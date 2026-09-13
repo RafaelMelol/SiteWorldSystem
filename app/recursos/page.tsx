@@ -1,0 +1,44 @@
+import type { Metadata } from "next";
+import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { FeatureJourney } from "@/components/sections/FeatureJourney";
+import { CtaBanner } from "@/components/sections/CtaBanner";
+import { featureGroups } from "@/content/features";
+
+export const metadata: Metadata = {
+  title: "Recursos",
+  description:
+    "Conheça os recursos das soluções World System: plataforma web, relatórios, segurança, emissão fiscal, operação comercial e integrações com equipamentos.",
+};
+
+export default function RecursosPage() {
+  return (
+    <>
+      <section className="py-20 lg:py-28">
+        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+          <Reveal>
+            <span className="text-xs font-semibold uppercase tracking-wide text-brand-fg">
+              Recursos
+            </span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              Tudo que as soluções World System colocam à sua disposição
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-foreground/70">
+              Os recursos abaixo estão presentes, no todo ou em parte, nas
+              soluções SCA 4.0 Pro, NFe/NFCe e CTe/MDFe — organizados por
+              categoria para facilitar a consulta.
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <FeatureJourney groups={featureGroups} />
+          </Reveal>
+        </Container>
+      </section>
+
+      <CtaBanner
+        title="Quer ver esses recursos em ação?"
+        description="Agende uma conversa com a World System e conheça a solução ideal para o seu negócio."
+      />
+    </>
+  );
+}
