@@ -23,9 +23,11 @@ export function CustomCursor() {
     const mediaQuery = window.matchMedia(QUERY);
     let frameId = 0;
 
+    // Fator alto de propósito: o círculo praticamente cola no ponteiro.
+    // Valores baixos davam a impressão de atraso/travamento.
     function animate() {
-      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.2;
-      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.2;
+      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.6;
+      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.6;
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${currentPos.current.x}px, ${currentPos.current.y}px) translate(-50%, -50%)`;
       }

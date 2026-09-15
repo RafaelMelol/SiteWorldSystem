@@ -13,13 +13,25 @@ export const faqCategories: FaqCategory[] = [
     ],
   },
   {
-    title: "Cupom Fiscal (ECF)",
+    title: "NFC-e (Nota Fiscal de Consumidor Eletrônica)",
     description: "Cancelamentos, trocas e devoluções.",
     items: [
       {
-        question: "Quais os procedimentos para troca ou devolução de mercadorias?",
+        question: "Qual o prazo máximo para cancelamento de NFC-e em Minas Gerais?",
         answer:
-          "O ECF permite apenas o cancelamento do último cupom emitido. O cupom cancelado deve conter assinatura do comprador, do operador e do responsável, além do motivo do cancelamento. Para a troca efetiva da mercadoria, deve ser emitido um novo documento fiscal. Em caso de devolução, a empresa deve emitir uma Nota Fiscal de Entrada para documentar o retorno da mercadoria, sendo o aproveitamento de crédito possível apenas quando o cupom original identificar o comprador.",
+          "O prazo máximo padrão para o cancelamento de uma NFC-e em Minas Gerais é de até 30 minutos após a concessão da autorização de uso.",
+      },
+      {
+        question:
+          "Qual o prazo máximo para cancelamento por substituição (contingência) de NFC-e em Minas Gerais?",
+        answer:
+          "O prazo máximo é de 168 horas (7 dias) contados da emissão da nota em contingência para cobrir a mesma operação.",
+      },
+      {
+        question:
+          "Qual o prazo máximo para cancelamento extemporâneo (fora do prazo) de NFC-e em Minas Gerais?",
+        answer:
+          "Segundo o fisco mineiro, não há previsão regulamentada de cancelamento extemporâneo para a NFC-e. O procedimento usual recomendado para anular a operação é a emissão de uma NFe de devolução.",
       },
     ],
   },
@@ -70,7 +82,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "Quais procedimentos tomar antes de formatar o servidor?",
         answer:
-          "É necessário alinhar com o suporte da World System para a restauração do sistema. As pastas essenciais para backup são: WSI, PDV, UTIL, 0, NF, NFE, TXT e DATABASE.",
+          "É necessário contatar o suporte da World System para a realização de backup do banco de dados do sistema, arquivos de configuração da empresa, pastas de XMLs dos documentos fiscais, etc.",
       },
       {
         question:

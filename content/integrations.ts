@@ -2,16 +2,16 @@ import type { Integration } from "@/types/content";
 
 export const integrations: Integration[] = [
   {
-    name: "SEFAZ/MG",
+    name: "SEF/MG",
     category: "Fiscal",
     description:
-      "Sistemas totalmente integrados aos aplicativos da SEFAZ/MG para emissão e transmissão de documentos fiscais eletrônicos.",
+      "Sistemas totalmente integrados aos aplicativos da SEF/MG para emissão e transmissão de documentos fiscais eletrônicos.",
   },
   {
-    name: "PedidosOK",
+    name: "PedidoOk",
     category: "Vendas",
     description:
-      "Integração com o aplicativo PedidosOK para recebimento de pedidos diretamente no sistema de gestão.",
+      "Integração com o aplicativo PedidoOk para recebimento de pedidos diretamente no sistema de gestão.",
   },
   {
     name: "Mercado Livre",

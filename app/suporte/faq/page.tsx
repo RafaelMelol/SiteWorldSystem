@@ -8,7 +8,7 @@ import { faqCategories } from "@/content/faq";
 export const metadata: Metadata = {
   title: "Perguntas frequentes",
   description:
-    "Perguntas frequentes sobre EFD-Contribuições, Cupom Fiscal (ECF), NF-e, SINTEGRA e procedimentos operacionais dos sistemas World System.",
+    "Perguntas frequentes sobre EFD-Contribuições, NF-e, NFC-e, SINTEGRA e procedimentos operacionais dos sistemas World System.",
 };
 
 export default function FaqPage() {

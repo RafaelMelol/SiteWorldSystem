@@ -21,11 +21,11 @@ export default function RecursosPage() {
               Recursos
             </span>
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Tudo que as soluções World System colocam à sua disposição
+              Um conjunto completo de soluções à disposição da sua empresa
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
               Os recursos abaixo estão presentes, no todo ou em parte, nas
-              soluções SCA 4.0 Pro, NFe/NFCe e CTe/MDFe — organizados por
+              soluções SCA 5.0 Pro, NFe/NFCe e CTe/MDFe — organizados por
               categoria para facilitar a consulta.
             </p>
           </Reveal>

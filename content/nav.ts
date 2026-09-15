@@ -6,8 +6,8 @@ export const mainNav: NavSection[] = [
     label: "Soluções",
     href: "/solucoes",
     children: [
-      { label: "SCA 4.0 Pro – Varejo", href: "/solucoes/varejo" },
-      { label: "SCA 4.0 Pro – Atacado", href: "/solucoes/atacado" },
+      { label: "SCA 5.0 Pro – Varejo", href: "/solucoes/varejo" },
+      { label: "SCA 5.0 Pro – Atacado", href: "/solucoes/atacado" },
       { label: "NFe e NFCe", href: "/solucoes/nfe-nfce" },
       { label: "CTe, CTe OS e MDFe", href: "/solucoes/cte-mdfe" },
     ],
@@ -33,8 +33,8 @@ export const footerNav = {
     { label: "Contato", href: "/contato" },
   ],
   solucoes: [
-    { label: "SCA 4.0 Pro – Varejo", href: "/solucoes/varejo" },
-    { label: "SCA 4.0 Pro – Atacado", href: "/solucoes/atacado" },
+    { label: "SCA 5.0 Pro – Varejo", href: "/solucoes/varejo" },
+    { label: "SCA 5.0 Pro – Atacado", href: "/solucoes/atacado" },
     { label: "NFe e NFCe", href: "/solucoes/nfe-nfce" },
     { label: "CTe, CTe OS e MDFe", href: "/solucoes/cte-mdfe" },
   ],

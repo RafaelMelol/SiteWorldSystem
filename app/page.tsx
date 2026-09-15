@@ -26,7 +26,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Recursos"
-              title="Um sistema completo, do estoque à conformidade fiscal"
+              title="Gestão completa, do estoque à conformidade fiscal"
               description="Tecnologia, segurança, inteligência de dados e integração operacional reunidas em uma única plataforma."
             />
             <Link
@@ -51,7 +51,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Integrações"
-              title="Conectado ao que a sua operação já utiliza"
+              title="Conectado às ferramentas que sua empresa já utiliza"
               description="Integrações com órgãos fiscais, marketplaces e equipamentos usados no dia a dia comercial."
             />
           </Reveal>

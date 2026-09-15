@@ -16,7 +16,7 @@ export function CompanyTeaser() {
         <Reveal>
           <SectionHeading
             eyebrow="Sobre a World System"
-            title={`Mais de três décadas de experiência em TI, desde ${companyOverview.foundingYear}`}
+            title="Mais de três décadas de experiência transformando tecnologia em soluções para o seu negócio"
             description={companyOverview.intro}
           />
 

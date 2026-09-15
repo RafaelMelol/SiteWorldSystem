@@ -7,7 +7,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 export const metadata: Metadata = {
   title: "Integrações",
   description:
-    "Integrações da World System com SEFAZ/MG, PedidosOK, Mercado Livre e equipamentos de operação como balanças, leitores e impressoras de etiquetas.",
+    "Integrações da World System com SEF/MG, PedidoOk, Mercado Livre, Shopee e equipamentos de operação como balanças, leitores e impressoras de etiquetas.",
 };
 
 export default function IntegracoesPage() {
@@ -23,9 +23,8 @@ export default function IntegracoesPage() {
               Conectado aos órgãos fiscais e à sua operação
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
-              As soluções World System são totalmente integradas aos
-              aplicativos da SEFAZ/MG e conectam-se a canais de venda e
-              equipamentos já usados no seu dia a dia.
+              Tecnologia integrada à SEF/MG, aos canais de venda e aos
+              equipamentos que sua empresa já utiliza.
             </p>
           </Reveal>
         </Container>

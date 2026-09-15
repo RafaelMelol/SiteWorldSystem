@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Clock, MessageCircleQuestion, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
@@ -26,11 +26,11 @@ export default function SuportePage() {
               Suporte
             </span>
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Um time pronto para manter sua operação funcionando
+              Um time preparado para garantir a continuidade da sua operação
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
-              Atendimento telefônico, horário de plantão e respostas para as
-              dúvidas técnicas mais comuns.
+              Atendimento, horário de plantão e respostas para as dúvidas
+              técnicas mais comuns.
             </p>
           </Reveal>
         </Container>
@@ -41,32 +41,22 @@ export default function SuportePage() {
           <Reveal>
             <SectionHeading
               eyebrow="Horário de atendimento"
-              title="Quando você pode contar com a gente"
+              title="Quando sua empresa precisa, você pode contar com a gente"
             />
             <div className="mt-8 flex flex-col gap-4">
-              <Card className="flex items-start gap-4">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Clock className="size-5" aria-hidden />
-                </span>
-                <div>
-                  <CardTitle>{supportHours.weekdayLabel}</CardTitle>
-                  <p className="mt-1 text-sm font-semibold text-brand-fg">
-                    {supportHours.weekdayHours}
-                  </p>
-                  <CardDescription>{supportHours.weekdayNote}</CardDescription>
-                </div>
+              <Card>
+                <CardTitle>{supportHours.weekdayLabel}</CardTitle>
+                <p className="mt-2 text-2xl font-bold tabular-nums tracking-tight text-brand-fg">
+                  {supportHours.weekdayHours}
+                </p>
+                <CardDescription>{supportHours.weekdayNote}</CardDescription>
               </Card>
-              <Card className="flex items-start gap-4">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                  <Zap className="size-5" aria-hidden />
-                </span>
-                <div>
-                  <CardTitle>{supportHours.saturdayLabel}</CardTitle>
-                  <p className="mt-1 text-sm font-semibold text-brand-fg">
-                    {supportHours.saturdayHours}
-                  </p>
-                  <CardDescription>{supportHours.saturdayNote}</CardDescription>
-                </div>
+              <Card>
+                <CardTitle>{supportHours.saturdayLabel}</CardTitle>
+                <p className="mt-2 text-2xl font-bold tabular-nums tracking-tight text-brand-fg">
+                  {supportHours.saturdayHours}
+                </p>
+                <CardDescription>{supportHours.saturdayNote}</CardDescription>
               </Card>
             </div>
           </Reveal>
@@ -96,7 +86,7 @@ export default function SuportePage() {
               >
                 <div>
                   <p className="text-sm font-semibold text-foreground">
-                    Plantão de sábado
+                    Plantão aos sábados
                   </p>
                   <p className="text-sm text-foreground/60">
                     {contactInfo.onCallPhoneDisplay}
@@ -112,17 +102,12 @@ export default function SuportePage() {
         <Container>
           <Reveal>
             <Card className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-4">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <MessageCircleQuestion className="size-5" aria-hidden />
-                </span>
-                <div>
-                  <CardTitle>Perguntas frequentes</CardTitle>
-                  <CardDescription>
-                    Dúvidas técnicas sobre EFD-Contribuições, NF-e, SINTEGRA e
-                    procedimentos operacionais.
-                  </CardDescription>
-                </div>
+              <div>
+                <CardTitle>Perguntas frequentes</CardTitle>
+                <CardDescription>
+                  Dúvidas técnicas sobre EFD-Contribuições, NF-e, NFC-e,
+                  SINTEGRA e procedimentos operacionais.
+                </CardDescription>
               </div>
               <Link href="/suporte/faq" className={buttonVariants({ className: "shrink-0 group/link" })}>
                 Ver FAQ completo

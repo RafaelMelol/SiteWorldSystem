@@ -1,23 +1,20 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { buttonVariants } from "@/components/ui/Button";
 import type { Solution } from "@/types/content";
 
 /**
- * Card largo de solução: numeral de fundo, painel do ícone, tags e CTA.
- * Usado na Home e em /solucoes para as duas listagens ficarem iguais.
+ * Card largo de solução: numeral de fundo, tags e CTA. Usado na Home e em
+ * /solucoes para as duas listagens ficarem iguais.
  */
 export function SolutionRow({
   solution,
   index,
-  icon: Icon,
   ctaLabel = "Ver detalhes",
 }: {
   solution: Solution;
   index: number;
-  icon: LucideIcon;
   ctaLabel?: string;
 }) {
   return (
@@ -30,11 +27,7 @@ export function SolutionRow({
         {String(index + 1).padStart(2, "0")}
       </span>
 
-      <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr_auto] lg:items-center">
-        <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-          <Icon className="size-6" aria-hidden />
-        </span>
-
+      <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
           <Badge>{solution.category}</Badge>
           <h3 className="mt-3 text-2xl font-bold tracking-tight text-foreground">
@@ -45,7 +38,7 @@ export function SolutionRow({
           </p>
           {solution.segments && (
             <ul className="mt-4 flex flex-wrap gap-2">
-              {solution.segments.slice(0, 5).map((segment) => (
+              {solution.segments.map((segment) => (
                 <li
                   key={segment}
                   className="rounded bg-surface-muted px-2.5 py-1 text-xs font-medium text-foreground/60"

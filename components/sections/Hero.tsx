@@ -74,19 +74,21 @@ export function Hero() {
           <div>
             <Reveal>
               <span className="inline-flex items-center rounded-full border border-border-subtle bg-surface-muted px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-fg">
-                Desde {companyOverview.foundingYear} em soluções de TI
+                Desde {companyOverview.foundingYear}
               </span>
             </Reveal>
             <Reveal delay={80}>
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-                Tecnologia que organiza a gestão e a automação do seu negócio
+                Tecnologia que organiza, automatiza e impulsiona a gestão do seu
+                negócio
               </h1>
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/70">
-                A World System desenvolve sistemas de gestão, PDV e emissão fiscal
-                para empresas de indústria, atacado e varejo, unindo experiência
-                de mercado e atendimento personalizado.
+                A World System oferece soluções completas em gestão e emissão
+                fiscal para indústria, atacado e varejo, unindo tecnologia,
+                experiência de mercado e atendimento personalizado para tornar a
+                gestão mais eficiente, segura e inteligente.
               </p>
             </Reveal>
 

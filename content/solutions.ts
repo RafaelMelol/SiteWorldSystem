@@ -4,7 +4,7 @@ export const solutions: Solution[] = [
   {
     slug: "varejo",
     category: "Varejo",
-    name: "SCA 4.0 Pro – Varejo",
+    name: "SCA 5.0 Pro – Varejo",
     tagline: "Sistema de retaguarda completo para lojas varejistas",
     description:
       "Solução de gestão para lojas varejistas de diversos segmentos, unindo controle de estoque, financeiro e emissão fiscal em um único sistema de retaguarda.",
@@ -27,12 +27,12 @@ export const solutions: Solution[] = [
           "Controle de insumos e produção",
           "Montagem e fragmentação de produtos",
           "Inventário de estoque",
+          "Cálculo automático do preço de venda",
         ],
       },
       {
         title: "Financeiro",
         items: [
-          "Cálculo do preço de venda",
           "Contas a pagar e a receber",
           "Controle de caixa diário, mensal e anual",
           "Limite de crédito por cliente",
@@ -46,7 +46,7 @@ export const solutions: Solution[] = [
           "Emissão de nota fiscal eletrônica",
           "Importação de XML com cadastro automático",
           "Envio de DANFE por e-mail ao destinatário",
-          "Geração de arquivo Sintegra",
+          "Geração de arquivos Sintegra, SPED Fiscal e Contribuições",
         ],
       },
       {
@@ -63,7 +63,7 @@ export const solutions: Solution[] = [
   {
     slug: "atacado",
     category: "Atacado",
-    name: "SCA 4.0 Pro – Atacado",
+    name: "SCA 5.0 Pro – Atacado",
     tagline: "Solução comercial para pequenos e médios atacadistas",
     description:
       "Sistema de retaguarda voltado a pequenos atacadistas, com controle de produção, custos, conformidade fiscal e gestão financeira de ponta a ponta.",
@@ -80,12 +80,12 @@ export const solutions: Solution[] = [
           "Controle de insumos e produção",
           "Inventário de estoque",
           "Formação de custo e montagem de produtos",
+          "Cálculo automático do preço de venda",
         ],
       },
       {
         title: "Financeiro",
         items: [
-          "Cálculo do preço de venda",
           "Contas a pagar e a receber",
           "Controle de limite de crédito e cobrança",
           "Controle de caixa e banco diário, mensal e anual",
@@ -94,8 +94,7 @@ export const solutions: Solution[] = [
       {
         title: "Fiscal e expedição",
         items: [
-          "Geração de arquivo Sintegra",
-          "SPED Fiscal e SPED Contribuições",
+          "Geração de arquivos Sintegra, SPED Fiscal e Contribuições",
           "Etiquetagem e documentos de expedição",
         ],
       },
@@ -124,7 +123,7 @@ export const solutions: Solution[] = [
           "Consulta de preço",
           "Venda rápida",
           "Controle de vendas em cartão débito e crédito",
-          "Controle de mesas",
+          "Integração com Ordem de Serviço",
         ],
       },
       {
@@ -151,7 +150,7 @@ export const solutions: Solution[] = [
     name: "CTe, CTe OS e MDFe",
     tagline: "Documentos fiscais para o transporte de mercadorias",
     description:
-      "Emissão de documentos fiscais para acobertar o transporte de mercadorias próprias ou de terceiros, com geração rápida e conformidade tributária.",
+      "Emissão de documentos fiscais para acobertar o transporte de mercadorias e pessoas, com geração rápida e conformidade tributária.",
     featureGroups: [
       {
         title: "Cadastros",

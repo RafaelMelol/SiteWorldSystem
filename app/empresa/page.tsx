@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Building2, MapPin, ShieldCheck, Users } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card, CardDescription, CardTitle } from "@/components/ui/Card";
@@ -23,8 +22,7 @@ export default function EmpresaPage() {
       <section className="border-b border-border-subtle bg-surface-muted py-20 lg:py-24">
         <Container className="max-w-3xl text-center">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-fg">
-              <Building2 className="size-3.5" aria-hidden />
+            <span className="inline-flex items-center rounded-full bg-surface px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-fg">
               Empresa
             </span>
             <h1 className="mt-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
@@ -44,8 +42,7 @@ export default function EmpresaPage() {
               eyebrow="Nossa localização"
               title={`Sede em ${companyOverview.headquarters}`}
             />
-            <div className="mt-6 flex items-start gap-3 rounded-xl border border-border-subtle bg-surface p-5 transition-colors duration-300 ease-out hover:border-brand-200">
-              <MapPin className="mt-0.5 size-5 shrink-0 text-brand-fg" aria-hidden />
+            <div className="mt-6 rounded-xl border border-border-subtle bg-surface p-5 transition-colors duration-300 ease-out hover:border-brand-200">
               <p className="text-sm leading-relaxed text-foreground/70">
                 A World System fica a {companyOverview.distanceFromBH}, no
                 centro-oeste de Minas Gerais, com sede própria, instalações e
@@ -55,12 +52,9 @@ export default function EmpresaPage() {
             </div>
 
             <div className="mt-6 rounded-xl border border-border-subtle bg-surface p-5 transition-colors duration-300 ease-out hover:border-brand-200">
-              <div className="flex items-center gap-3">
-                <Users className="size-5 shrink-0 text-brand-fg" aria-hidden />
-                <p className="text-sm font-semibold text-foreground">
-                  Segmentos atendidos
-                </p>
-              </div>
+              <p className="text-sm font-semibold text-foreground">
+                Segmentos atendidos
+              </p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {segmentsServed.map((segment) => (
                   <li
@@ -88,7 +82,6 @@ export default function EmpresaPage() {
               <PrincipleCard
                 title="Reconhecimento"
                 description={companyOverview.recognition}
-                icon={<ShieldCheck className="size-4" aria-hidden />}
               />
             </div>
           </Reveal>
@@ -128,18 +121,13 @@ export default function EmpresaPage() {
 function PrincipleCard({
   title,
   description,
-  icon,
 }: {
   title: string;
   description: string;
-  icon?: React.ReactNode;
 }) {
   return (
     <div className="rounded-xl border border-border-subtle bg-surface p-5 transition-colors duration-300 ease-out hover:border-brand-200">
-      <div className="flex items-center gap-2">
-        {icon}
-        <p className="text-sm font-semibold text-foreground">{title}</p>
-      </div>
+      <p className="text-sm font-semibold text-foreground">{title}</p>
       <p className="mt-2 text-sm leading-relaxed text-foreground/70">
         {description}
       </p>

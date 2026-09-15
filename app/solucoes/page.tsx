@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { FileText, Store, Truck, Warehouse } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { CtaBanner } from "@/components/sections/CtaBanner";
@@ -10,14 +8,7 @@ import { solutions } from "@/content/solutions";
 export const metadata: Metadata = {
   title: "Soluções",
   description:
-    "Conheça as soluções da World System: SCA 4.0 Pro para varejo e atacado, emissão de NFe/NFCe e documentos fiscais de transporte CTe, CTe OS e MDFe.",
-};
-
-const icons: Record<string, LucideIcon> = {
-  Varejo: Store,
-  Atacado: Warehouse,
-  Fiscal: FileText,
-  Transporte: Truck,
+    "Conheça as soluções da World System: SCA 5.0 Pro para varejo e atacado, emissão de NFe/NFCe e documentos fiscais de transporte CTe, CTe OS e MDFe.",
 };
 
 export default function SolucoesPage() {
@@ -44,11 +35,7 @@ export default function SolucoesPage() {
         <Container className="flex flex-col gap-6">
           {solutions.map((solution, index) => (
             <Reveal key={solution.slug} delay={index * 70}>
-              <SolutionRow
-                solution={solution}
-                index={index}
-                icon={icons[solution.category] ?? Store}
-              />
+              <SolutionRow solution={solution} index={index} />
             </Reveal>
           ))}
         </Container>

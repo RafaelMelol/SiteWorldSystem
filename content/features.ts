@@ -38,7 +38,7 @@ export const featureGroups: FeatureGroup[] = [
       "Emissão de documentos fiscais integrada à operação, com backup e conformidade com a legislação.",
     items: [
       "Emissão rápida de NFe, NFCe, CCe, CTe, MDFe e CTeOS",
-      "SPED Fiscal e SPED Contribuições",
+      "Sintegra, SPED Fiscal e Contribuições",
       "Backup automático de XMLs",
     ],
   },
@@ -63,8 +63,9 @@ export const featureGroups: FeatureGroup[] = [
       "Integração com balanças",
       "Integração com leitores de código de barras",
       "Integração com impressoras de etiquetas",
-      "Integração com o app PedidosOK",
+      "Integração com o app PedidoOk",
       "Integração com Mercado Livre",
+      "Integração com Shopee",
     ],
   },
 ];

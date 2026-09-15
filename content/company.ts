@@ -1,13 +1,13 @@
 export const companyOverview = {
   foundingYear: 1993,
-  headquarters: "Lagoa da Prata, Minas Gerais",
+  headquarters: "Lagoa da Prata-MG",
   distanceFromBH: "187 km de Belo Horizonte",
   intro:
-    "Desde 1993 a World System é uma empresa pioneira no mercado de soluções em TI, desenvolvendo e aprimorando sistemas de gestão e automação comercial para empresas dos segmentos de indústria, atacado e varejo.",
+    "Desde 1993, a World System transforma experiência e inovação em soluções de TI para gestão e automação comercial, atendendo indústrias, atacados e varejos com tecnologia, eficiência e confiança.",
   mission:
-    "Oferecer uma solução completa e confiável, voltada ao planejamento e à assessoria baseada na experiência e no atendimento personalizado a cada cliente e parceiro.",
+    "Entregar soluções completas e confiáveis, combinando experiência, planejamento e assessoria especializada para oferecer um atendimento próximo e personalizado a cada cliente e parceiro.",
   commitment:
-    "Desenvolver sempre soluções comerciais personalizadas, fáceis e confiáveis, garantindo qualidade e total satisfação.",
+    "Transformar necessidades em soluções comerciais personalizadas, simples e confiáveis, entregando qualidade, eficiência e uma experiência que supere as expectativas de nossos clientes.",
   recognition:
     "Empresa destaque no segmento de Sistemas para Automação Comercial em premiações da CHG Representações, no Prêmio Destak Empresarial, Melhores Empresas e Prata da Casa.",
 } as const;

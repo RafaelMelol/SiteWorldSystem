@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check, FileText, Store, Truck, Warehouse } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { buttonVariants } from "@/components/ui/Button";
@@ -11,13 +10,6 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getSolutionJsonLd } from "@/lib/structured-data";
 import { getSolutionBySlug, solutions } from "@/content/solutions";
-
-const icons: Record<string, LucideIcon> = {
-  Varejo: Store,
-  Atacado: Warehouse,
-  Fiscal: FileText,
-  Transporte: Truck,
-};
 
 export function generateStaticParams() {
   return solutions.map((solution) => ({ slug: solution.slug }));
@@ -48,8 +40,6 @@ export default async function SolutionPage({
 
   if (!solution) notFound();
 
-  const Icon = icons[solution.category] ?? Store;
-
   return (
     <>
       <JsonLd data={getSolutionJsonLd(solution)} />
@@ -64,17 +54,12 @@ export default async function SolutionPage({
           </Link>
 
           <Reveal delay={80}>
-            <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <span className="flex size-16 shrink-0 items-center justify-center rounded-xl border border-border-subtle bg-surface text-brand-fg">
-                <Icon className="size-7" aria-hidden />
-              </span>
-              <div>
-                <Badge>{solution.category}</Badge>
-                <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  {solution.name}
-                </h1>
-                <p className="mt-2 text-lg text-foreground/70">{solution.tagline}</p>
-              </div>
+            <div className="mt-6">
+              <Badge>{solution.category}</Badge>
+              <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                {solution.name}
+              </h1>
+              <p className="mt-2 text-lg text-foreground/70">{solution.tagline}</p>
             </div>
 
             <p className="mt-8 max-w-3xl text-base leading-relaxed text-foreground/70">
@@ -137,11 +122,11 @@ export default async function SolutionPage({
                     {group.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-2 text-sm text-foreground/70"
+                        className="flex items-start gap-2.5 text-sm text-foreground/70"
                       >
-                        <Check
-                          className="mt-0.5 size-3.5 shrink-0 text-accent-500"
+                        <span
                           aria-hidden
+                          className="mt-[0.4rem] size-1.5 shrink-0 rounded-full bg-accent-500"
                         />
                         {item}
                       </li>

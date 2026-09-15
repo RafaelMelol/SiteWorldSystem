@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Briefcase } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
@@ -16,10 +15,10 @@ export default function OportunidadesPage() {
     <section className="py-20 lg:py-28">
       <Container className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.3fr] lg:items-start">
         <Reveal>
-          <span className="flex size-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
-            <Briefcase className="size-6" aria-hidden />
+          <span className="text-xs font-semibold uppercase tracking-wide text-brand-fg">
+            Trabalhe com a gente
           </span>
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-foreground">
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground">
             Oportunidades
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-foreground/70">
