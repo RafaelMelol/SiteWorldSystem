@@ -2,8 +2,12 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/config";
 import { solutions } from "@/content/solutions";
 
+/**
+ * Gera o /sitemap.xml: a lista de páginas que os buscadores devem indexar.
+ * As páginas de solução entram sozinhas, a partir de content/solutions.ts.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = [
+  const paths = [
     "",
     "/empresa",
     "/solucoes",
@@ -13,16 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/suporte/faq",
     "/oportunidades",
     "/contato",
+    ...solutions.map((solution) => `/solucoes/${solution.slug}`),
   ];
 
-  const solutionRoutes = solutions.map((solution) => `/solucoes/${solution.slug}`);
-
-  const routes = [...staticRoutes, ...solutionRoutes];
-
-  return routes.map((route) => ({
-    url: `${siteConfig.url}${route}`,
+  return paths.map((path) => ({
+    url: `${siteConfig.url}${path}`,
     lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.7,
+    // A página inicial ("") muda com mais frequência e tem prioridade máxima.
+    changeFrequency: path === "" ? "weekly" : "monthly",
+    priority: path === "" ? 1 : 0.7,
   }));
 }

@@ -1,35 +1,31 @@
 "use client";
 
-import { useId, useState, type ReactNode } from "react";
+import { useId, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
+import { easeOutExpo } from "@/components/ui/Animations";
 import { cn } from "@/lib/utils";
 
-const easeOutExpo = [0.16, 1, 0.3, 1] as const;
-
-export interface AccordionItemData {
-  question: string;
-  answer: ReactNode;
-}
-
+/**
+ * Lista de perguntas que abrem e fecham (acordeão), usada no FAQ.
+ * Só uma resposta fica aberta por vez.
+ */
 export function Accordion({
   items,
-  defaultOpenIndex,
 }: {
-  items: AccordionItemData[];
-  defaultOpenIndex?: number;
+  items: { question: string; answer: string }[];
 }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(
-    defaultOpenIndex ?? null
-  );
+  // Índice da pergunta aberta (null = todas fechadas).
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // Prefixo único para ligar cada botão ao seu painel, para leitores de tela.
   const baseId = useId();
 
   return (
     <div className="divide-y divide-border-subtle rounded-2xl border border-border-subtle bg-surface">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
-        const panelId = `${baseId}-panel-${index}`;
         const buttonId = `${baseId}-button-${index}`;
+        const panelId = `${baseId}-panel-${index}`;
 
         return (
           <div key={item.question}>
@@ -39,8 +35,9 @@ export function Accordion({
                 type="button"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
+                // Clicar na pergunta aberta fecha; em outra, troca.
                 onClick={() => setOpenIndex(isOpen ? null : index)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-medium text-foreground transition-colors hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-inset sm:text-base"
+                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-medium text-foreground transition-colors hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-500 sm:text-base"
               >
                 <span>{item.question}</span>
                 <ChevronDown
@@ -52,10 +49,11 @@ export function Accordion({
                 />
               </button>
             </h3>
+
+            {/* A resposta abre e fecha animando a altura. */}
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
-                  key="panel"
                   id={panelId}
                   role="region"
                   aria-labelledby={buttonId}

@@ -1,27 +1,23 @@
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 
 /**
- * Logo oficial da World System: PNG único com fundo transparente. A arte
- * tem o texto em azul-escuro, que perde contraste no tema escuro — daí a
- * classe .logo-mark, tratada em globals.css.
+ * Logo da World System (arquivo public/logo.png).
+ *
+ * É a mesma imagem nos dois temas. No tema escuro, a classe .logo-mark aplica
+ * um halo claro (definido em globals.css) para o subtítulo "Soluções em TI",
+ * que é azul-escuro, continuar legível.
  */
-export function LogoMark({
-  className,
-  imgClassName,
-}: {
-  className?: string;
-  imgClassName?: string;
-}) {
+export function LogoMark() {
   return (
-    <span className={cn("relative inline-flex items-center", className)}>
+    <span className="inline-flex items-center">
+      {/* width/height são as medidas reais do arquivo; o tamanho exibido vem das classes. */}
       <Image
         src="/logo.png"
         alt="World System"
         width={1569}
         height={281}
         priority
-        className={cn("logo-mark h-10 w-auto sm:h-11", imgClassName)}
+        className="logo-mark h-10 w-auto sm:h-11"
       />
     </span>
   );

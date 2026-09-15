@@ -5,7 +5,7 @@ Site institucional da **World System – Soluções em TI** (Lagoa da Prata/MG),
 ## Stack
 
 - Next.js 16 (App Router) + React 19 + TypeScript
-- Tailwind CSS v4, com os tokens de tema em `app/globals.css`
+- Tailwind CSS v4, com as cores e temas em `app/globals.css`
 - Motion para as animações
 - Zod para validação dos formulários
 - Resend (opcional) para envio dos e-mails de contato
@@ -24,7 +24,7 @@ Outros comandos:
 ```bash
 npm run build   # build de produção
 npm run start   # sobe o build
-npm run lint    # eslint
+npm run lint    # verifica o código
 ```
 
 ## Variáveis de ambiente
@@ -33,24 +33,29 @@ Copie o `.env.example` para `.env.local` e preencha:
 
 | Variável | Para que serve |
 | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | URL pública, usada em metadata, sitemap e Open Graph |
+| `NEXT_PUBLIC_SITE_URL` | URL pública, usada em metadados, sitemap e prévias de link |
 | `RESEND_API_KEY` | Chave da Resend para envio real dos e-mails |
-| `EMAIL_FROM` / `EMAIL_TO` | Remetente e destino das notificações dos formulários |
+| `EMAIL_FROM` / `EMAIL_TO` | Remetente e destinatário dos avisos dos formulários |
 
-Sem a `RESEND_API_KEY` os formulários continuam funcionando: a submissão é registrada no log do servidor em vez de enviar e-mail.
+Sem essas três variáveis de e-mail, os formulários continuam funcionando: a mensagem é registrada no log do servidor em vez de ser enviada.
 
 ## Estrutura
 
 ```
-app/            rotas (App Router), rotas de API e globals.css
-components/     ui/ (base), layout/, sections/, illustrations/
-content/        textos e dados do site, tipados
-lib/            validações Zod, envio de e-mail, rate limit, config
-hooks/          hooks próprios
+app/                 páginas (cada pasta é uma rota da URL)
+  api/               recebimento dos formulários de Contato e Oportunidades
+  globals.css        cores, temas e efeitos visuais globais
+components/
+  layout/            cabeçalho, rodapé, logo, botão de tema e efeitos globais
+  sections/          seções das páginas (hero, soluções, recursos, formulários...)
+  ui/                peças reutilizáveis (botões, cartões, campos, animações)
+content/             todos os textos e dados do site, com seus tipos
+lib/                 configuração, SEO e funções de servidor dos formulários
+public/              imagens
 ```
 
-Todo o conteúdo de texto fica em `content/`, separado dos componentes — para alterar textos, preços de plano, FAQ ou dados de contato, mexa só ali.
+Para alterar textos, soluções, FAQ, horários ou dados de contato, mexa só em `content/` — os componentes leem tudo de lá. Os arquivos têm comentários em português explicando o que cada parte faz.
 
 ## Deploy
 
-Pensado para a Vercel: basta conectar o repositório e cadastrar as variáveis de ambiente do painel. Qualquer host com suporte a Node também funciona via `npm run build && npm run start`.
+Pensado para a Vercel: basta conectar o repositório e cadastrar as variáveis de ambiente no painel. Qualquer host com suporte a Node também funciona via `npm run build && npm run start`.

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
-import { IntegrationsStrip } from "@/components/sections/IntegrationsStrip";
 import { CtaBanner } from "@/components/sections/CtaBanner";
+import { IntegrationsStrip } from "@/components/sections/IntegrationsStrip";
+import { Container, PageHeader } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
   title: "Integrações",
@@ -10,25 +9,15 @@ export const metadata: Metadata = {
     "Integrações da World System com SEF/MG, PedidoOk, Mercado Livre, Shopee e equipamentos de operação como balanças, leitores e impressoras de etiquetas.",
 };
 
+/** Página Integrações: todas as integrações disponíveis (content/integrations.ts). */
 export default function IntegracoesPage() {
   return (
     <>
-      <section className="border-b border-border-subtle bg-surface-muted py-20 lg:py-24">
-        <Container className="max-w-2xl text-center">
-          <Reveal>
-            <span className="text-xs font-semibold uppercase tracking-wide text-brand-fg">
-              Integrações
-            </span>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Conectado aos órgãos fiscais e à sua operação
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-foreground/70">
-              Tecnologia integrada à SEF/MG, aos canais de venda e aos
-              equipamentos que sua empresa já utiliza.
-            </p>
-          </Reveal>
-        </Container>
-      </section>
+      <PageHeader
+        eyebrow="Integrações"
+        title="Conectado aos órgãos fiscais e à sua operação"
+        description="Tecnologia integrada à SEF/MG, aos canais de venda e aos equipamentos que sua empresa já utiliza."
+      />
 
       <section className="py-20 lg:py-24">
         <Container>

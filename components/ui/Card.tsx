@@ -1,6 +1,16 @@
-import { cn } from "@/lib/utils";
 import type { HTMLAttributes } from "react";
+import { cn } from "@/lib/utils";
 
+/**
+ * Cartões, selos e etiquetas.
+ *
+ * - Card, CardTitle e CardDescription: caixa com borda, base da maioria
+ *   dos blocos do site
+ * - Badge: selo em caixa-alta que indica a categoria (ex: "VAREJO")
+ * - TagList: lista de etiquetas discretas (ex: segmentos atendidos)
+ */
+
+/** Caixa com borda e fundo. A borda fica azulada ao passar o mouse. */
 export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
@@ -16,10 +26,7 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
 export function CardTitle({ className, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn(
-        "text-xl font-bold tracking-tight text-foreground",
-        className
-      )}
+      className={cn("text-xl font-bold tracking-tight text-foreground", className)}
       {...props}
     />
   );
@@ -34,5 +41,40 @@ export function CardDescription({
       className={cn("mt-2 text-sm leading-relaxed text-foreground/70", className)}
       {...props}
     />
+  );
+}
+
+/** Selo pequeno de categoria. */
+export function Badge({ className, ...props }: HTMLAttributes<HTMLSpanElement>) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center rounded bg-brand-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-brand-700",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+/** Etiquetas lado a lado, quebrando para a linha de baixo quando falta espaço. */
+export function TagList({
+  items,
+  className,
+}: {
+  items: readonly string[];
+  className?: string;
+}) {
+  return (
+    <ul className={cn("flex flex-wrap gap-2", className)}>
+      {items.map((item) => (
+        <li
+          key={item}
+          className="rounded bg-surface-muted px-2.5 py-1 text-xs font-medium text-foreground/60"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
   );
 }

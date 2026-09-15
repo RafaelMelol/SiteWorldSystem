@@ -1,7 +1,11 @@
+import { Reveal } from "@/components/ui/Animations";
 import { Card } from "@/components/ui/Card";
-import { Reveal } from "@/components/ui/Reveal";
 import { integrations } from "@/content/integrations";
 
+/**
+ * Grade de cartões das integrações (dados em content/integrations.ts).
+ * Com `full`, mostra todas; sem ele, só as 6 primeiras (prévia da página inicial).
+ */
 export function IntegrationsStrip({ full = false }: { full?: boolean }) {
   const items = full ? integrations : integrations.slice(0, 6);
 

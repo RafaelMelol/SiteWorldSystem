@@ -1,40 +1,35 @@
 "use client";
 
-import { buttonVariants, type ButtonSize, type ButtonVariant } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+import { buttonVariants, type ButtonSize } from "@/components/ui/Button";
 
 /**
- * Abre o WhatsApp com a saudação já preenchida ("bom dia"/"boa tarde"
- * conforme o horário local). A mensagem é montada no clique, e não num
- * href estático, para usar a hora real e não a do build.
+ * Botão que abre uma conversa no WhatsApp com uma saudação pronta
+ * ("bom dia" ou "boa tarde", conforme o horário de quem clica).
+ *
+ * A mensagem é montada no momento do clique — e não num link fixo — para usar
+ * a hora real do visitante, e não a hora em que o site foi gerado.
  */
 export function WhatsAppButton({
   phone,
-  variant = "primary",
   size = "lg",
   className,
   children,
 }: {
   phone: string;
-  variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
-  function handleClick() {
-    const digits = phone.replace(/\D/g, "");
-    const hour = new Date().getHours();
-    const greeting = hour < 12 ? "Olá, bom dia!" : "Olá, boa tarde!";
+  function openChat() {
+    const digits = phone.replace(/\D/g, ""); // o wa.me aceita só números
+    const greeting = new Date().getHours() < 12 ? "Olá, bom dia!" : "Olá, boa tarde!";
     const url = `https://wa.me/${digits}?text=${encodeURIComponent(greeting)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleClick}
-      className={buttonVariants({ variant, size, className: cn(className) })}
-    >
+    <button type="button" onClick={openChat} className={buttonVariants({ size, className })}>
       {children}
     </button>
   );

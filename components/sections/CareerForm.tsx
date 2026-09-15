@@ -2,76 +2,69 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { UploadCloud } from "lucide-react";
-import { Field } from "@/components/ui/Field";
-import { Input, Textarea } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { FormStatus, type FormState } from "@/components/ui/FormStatus";
+import {
+  Field,
+  FormStatus,
+  Honeypot,
+  Input,
+  Textarea,
+  type FormState,
+} from "@/components/ui/Form";
+
+/**
+ * Formulário da página Oportunidades (envio de currículo).
+ *
+ * Por causa do arquivo anexado, os dados vão como FormData (multipart) para
+ * /api/oportunidades, e não em JSON.
+ */
+
+const DEFAULT_ERROR = "Não foi possível enviar seu currículo. Tente novamente.";
 
 export function CareerForm() {
-  const [state, setState] = useState<FormState>("idle");
-  const [errorMessage, setErrorMessage] = useState(
-    "Não foi possível enviar seu currículo. Tente novamente."
-  );
-  const [fileName, setFileName] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const [state, setState] = useState<FormState>("idle");
+  const [errorMessage, setErrorMessage] = useState(DEFAULT_ERROR);
+  // Nome do arquivo escolhido, exibido no lugar de "Clique para selecionar".
+  const [fileName, setFileName] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setState("loading");
 
-    const formData = new FormData(event.currentTarget);
-
     try {
       const response = await fetch("/api/oportunidades", {
         method: "POST",
-        body: formData,
+        body: new FormData(event.currentTarget),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        setErrorMessage(data?.message ?? "Não foi possível enviar seu currículo. Tente novamente.");
-        throw new Error(data?.message ?? "Falha no envio");
+        // Mostra a mensagem do servidor (ex: "O arquivo deve ter no máximo 5 MB.").
+        const data = await response.json();
+        setErrorMessage(data?.message ?? DEFAULT_ERROR);
+        setState("error");
+        return;
       }
 
       setState("success");
       formRef.current?.reset();
       setFileName(null);
     } catch {
+      setErrorMessage(DEFAULT_ERROR);
       setState("error");
     }
   }
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-5"
-      noValidate
-    >
-      <div className="hidden" aria-hidden="true">
-        <label htmlFor="career-website">Não preencha este campo</label>
-        <input
-          id="career-website"
-          name="website"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-        />
-      </div>
+    <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+      <Honeypot id="career-website" />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label="Nome" htmlFor="career-name" required>
           <Input id="career-name" name="name" autoComplete="name" required />
         </Field>
         <Field label="E-mail" htmlFor="career-email" required>
-          <Input
-            id="career-email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-          />
+          <Input id="career-email" name="email" type="email" autoComplete="email" required />
         </Field>
       </div>
 
@@ -85,6 +78,7 @@ export function CareerForm() {
         required
         hint="Tamanho máximo de 5 MB."
       >
+        {/* O input de arquivo fica invisível; a área tracejada é o rótulo clicável. */}
         <label
           htmlFor="career-resume"
           className="flex cursor-pointer items-center justify-center gap-2.5 rounded-lg border border-dashed border-border-subtle bg-surface-muted px-4 py-6 text-sm text-foreground/60 transition-colors hover:border-brand-400"
@@ -108,7 +102,7 @@ export function CareerForm() {
       </Field>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <Button type="submit" disabled={state === "loading"} size="lg">
+        <Button type="submit" size="lg" disabled={state === "loading"}>
           Enviar currículo
         </Button>
         <FormStatus

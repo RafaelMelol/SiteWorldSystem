@@ -1,5 +1,10 @@
-import type { NavSection } from "@/types/content";
+import type { NavLink, NavSection } from "@/content/types";
 
+/**
+ * Links de navegação do site.
+ */
+
+/** Menu do topo. Itens com `children` abrem um submenu. */
 export const mainNav: NavSection[] = [
   { label: "Empresa", href: "/empresa" },
   {
@@ -25,7 +30,8 @@ export const mainNav: NavSection[] = [
   { label: "Oportunidades", href: "/oportunidades" },
 ];
 
-export const footerNav = {
+/** Colunas de links do rodapé. */
+export const footerNav: Record<"institucional" | "solucoes", NavLink[]> = {
   institucional: [
     { label: "Home", href: "/" },
     { label: "Empresa", href: "/empresa" },
@@ -38,8 +44,4 @@ export const footerNav = {
     { label: "NFe e NFCe", href: "/solucoes/nfe-nfce" },
     { label: "CTe, CTe OS e MDFe", href: "/solucoes/cte-mdfe" },
   ],
-  suporte: [
-    { label: "Horário de atendimento", href: "/suporte#horario" },
-    { label: "FAQ", href: "/suporte/faq" },
-  ],
-} satisfies Record<string, { label: string; href: string }[]>;
+};

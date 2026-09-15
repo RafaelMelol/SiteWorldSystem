@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/ui/Container";
-import { Card } from "@/components/ui/Card";
-import { Reveal } from "@/components/ui/Reveal";
 import { CareerForm } from "@/components/sections/CareerForm";
+import { Reveal } from "@/components/ui/Animations";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
   title: "Oportunidades",
@@ -10,17 +10,19 @@ export const metadata: Metadata = {
     "Envie seu currículo para a World System. Ainda não há vagas específicas divulgadas, mas teremos prazer em conhecer o seu perfil.",
 };
 
+/**
+ * Página Oportunidades: convite para enviar o currículo (esquerda) e o
+ * formulário de envio (direita).
+ */
 export default function OportunidadesPage() {
   return (
     <section className="py-20 lg:py-28">
       <Container className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.3fr] lg:items-start">
         <Reveal>
-          <span className="text-xs font-semibold uppercase tracking-wide text-brand-fg">
+          <p className="text-xs font-semibold uppercase tracking-wide text-brand-fg">
             Trabalhe com a gente
-          </span>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground">
-            Oportunidades
-          </h1>
+          </p>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground">Oportunidades</h1>
           <p className="mt-4 text-lg leading-relaxed text-foreground/70">
             Nos envie seu currículo. Será um prazer trabalhar com você.
           </p>

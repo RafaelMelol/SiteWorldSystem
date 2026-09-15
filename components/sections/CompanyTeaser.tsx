@@ -1,18 +1,23 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { CountUp, Reveal } from "@/components/ui/Animations";
 import { Card } from "@/components/ui/Card";
-import { Reveal } from "@/components/ui/Reveal";
-import { CountUp } from "@/components/ui/CountUp";
+import { Container, SectionHeading } from "@/components/ui/Section";
 import { companyOverview, companyPillars, segmentsServed } from "@/content/company";
 
+/**
+ * Seção "Sobre a World System" da página inicial: apresentação, dois números
+ * que contam ao aparecer na tela e os quatro diferenciais da empresa.
+ */
+
+// Anos desde a fundação (calculado quando a página é gerada).
 const yearsInBusiness = new Date().getFullYear() - companyOverview.foundingYear;
 
 export function CompanyTeaser() {
   return (
     <section className="bg-surface-muted py-20 lg:py-28">
       <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+        {/* Texto, números e link para a página Empresa */}
         <Reveal>
           <SectionHeading
             eyebrow="Sobre a World System"
@@ -55,13 +60,12 @@ export function CompanyTeaser() {
           </Link>
         </Reveal>
 
+        {/* Diferenciais, em grade de 2 colunas */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {companyPillars.map((pillar, index) => (
             <Reveal key={pillar.title} delay={index * 60}>
               <Card className="p-5">
-                <h3 className="text-sm font-semibold text-foreground">
-                  {pillar.title}
-                </h3>
+                <h3 className="text-sm font-semibold text-foreground">{pillar.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/70">
                   {pillar.description}
                 </p>

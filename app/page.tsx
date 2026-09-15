@@ -1,26 +1,33 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Hero } from "@/components/sections/Hero";
-import { SolutionsOverview } from "@/components/sections/SolutionsOverview";
 import { CompanyTeaser } from "@/components/sections/CompanyTeaser";
-import { FeatureJourney } from "@/components/sections/FeatureJourney";
-import { IntegrationsStrip } from "@/components/sections/IntegrationsStrip";
 import { CtaBanner } from "@/components/sections/CtaBanner";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Reveal } from "@/components/ui/Reveal";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { getOrganizationJsonLd } from "@/lib/structured-data";
+import { FeatureJourney } from "@/components/sections/FeatureJourney";
+import { Hero } from "@/components/sections/Hero";
+import { IntegrationsStrip } from "@/components/sections/IntegrationsStrip";
+import { SolutionsOverview } from "@/components/sections/Solutions";
+import { Reveal } from "@/components/ui/Animations";
+import { Container, SectionHeading } from "@/components/ui/Section";
 import { featureGroups } from "@/content/features";
+import { JsonLd, getOrganizationJsonLd } from "@/lib/seo";
 
+/**
+ * Página inicial.
+ *
+ * Seções, na ordem: hero → soluções → sobre a empresa → recursos →
+ * integrações → faixa de contato.
+ */
 export default function HomePage() {
   return (
     <>
+      {/* Dados da empresa para buscadores (não aparece na tela) */}
       <JsonLd data={getOrganizationJsonLd()} />
+
       <Hero />
       <SolutionsOverview />
       <CompanyTeaser />
 
+      {/* Recursos: texto à esquerda e abas com as 4 primeiras categorias à direita */}
       <section className="py-20 lg:py-28">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.3fr] lg:items-start">
           <Reveal>
@@ -46,6 +53,7 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* Integrações: prévia com as 6 primeiras */}
       <section className="border-t border-border-subtle py-20 lg:py-28">
         <Container>
           <Reveal>

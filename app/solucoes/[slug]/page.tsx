@@ -2,48 +2,46 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { Badge } from "@/components/ui/Badge";
-import { buttonVariants } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
 import { CtaBanner } from "@/components/sections/CtaBanner";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { getSolutionJsonLd } from "@/lib/structured-data";
+import { Reveal } from "@/components/ui/Animations";
+import { buttonVariants } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Section";
 import { getSolutionBySlug, solutions } from "@/content/solutions";
+import { JsonLd, getSolutionJsonLd } from "@/lib/seo";
 
+/**
+ * Página de uma solução (/solucoes/varejo, /solucoes/atacado...).
+ *
+ * Um único arquivo atende todas as soluções: o [slug] no nome da pasta é a
+ * parte variável da URL, e os dados vêm de content/solutions.ts.
+ */
+
+type PageProps = { params: Promise<{ slug: string }> };
+
+// Gera todas as páginas de solução durante o build (páginas estáticas, mais rápidas).
 export function generateStaticParams() {
   return solutions.map((solution) => ({ slug: solution.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const solution = getSolutionBySlug(slug);
-  if (!solution) return {};
-
-  return {
-    title: solution.name,
-    description: solution.description,
-  };
+// Título e descrição próprios de cada solução (aba do navegador e buscadores).
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const solution = getSolutionBySlug((await params).slug);
+  return solution ? { title: solution.name, description: solution.description } : {};
 }
 
-export default async function SolutionPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const solution = getSolutionBySlug(slug);
+export default async function SolutionPage({ params }: PageProps) {
+  const solution = getSolutionBySlug((await params).slug);
 
+  // Endereço de solução que não existe mostra a página 404.
   if (!solution) notFound();
 
   return (
     <>
+      {/* Dados da solução para buscadores (não aparece na tela) */}
       <JsonLd data={getSolutionJsonLd(solution)} />
 
+      {/* Cabeçalho: categoria, nome, descrição, segmentos e botões */}
       <section className="border-b border-border-subtle bg-surface-muted py-16 lg:py-20">
         <Container>
           <Link
@@ -106,12 +104,11 @@ export default async function SolutionPage({
         </Container>
       </section>
 
+      {/* Recursos incluídos, agrupados em cartões */}
       <section className="py-20 lg:py-24">
         <Container>
           <Reveal>
-            <h2 className="text-2xl font-semibold text-foreground">
-              Recursos incluídos
-            </h2>
+            <h2 className="text-2xl font-semibold text-foreground">Recursos incluídos</h2>
           </Reveal>
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
             {solution.featureGroups.map((group, index) => (
@@ -120,10 +117,8 @@ export default async function SolutionPage({
                   <h3 className="font-semibold text-foreground">{group.title}</h3>
                   <ul className="mt-4 flex flex-col gap-2.5">
                     {group.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-2.5 text-sm text-foreground/70"
-                      >
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/70">
+                        {/* Marcador em forma de ponto */}
                         <span
                           aria-hidden
                           className="mt-[0.4rem] size-1.5 shrink-0 rounded-full bg-accent-500"

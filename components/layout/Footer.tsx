@@ -1,51 +1,38 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-} from "@/components/icons/SocialIcons";
 import { LogoMark } from "@/components/layout/LogoMark";
-import { Container } from "@/components/ui/Container";
-import { footerNav } from "@/content/nav";
+import { Container } from "@/components/ui/Section";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { contactInfo } from "@/content/contact";
+import { footerNav } from "@/content/nav";
+import type { NavLink } from "@/content/types";
 
+/**
+ * Rodapé: logo com redes sociais, duas colunas de links e os dados de contato.
+ * Links em content/nav.ts; endereço, telefone e e-mail em content/contact.ts.
+ */
 export function Footer() {
-  const year = new Date().getFullYear();
-  const { address, phoneDisplay, phone, email, social } = contactInfo;
+  const { address, phone, phoneDisplay, email } = contactInfo;
 
   return (
     <footer className="border-t border-border-subtle bg-surface-muted">
       <Container className="py-16">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.4fr]">
+          {/* Coluna 1: logo, frase e redes sociais */}
           <div>
             <LogoMark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground/70">
               Soluções em TI para gestão e automação de indústria, atacado e
               varejo desde 1993.
             </p>
-            <div className="mt-5 flex items-center gap-3">
-              {social.facebook && (
-                <SocialLink href={social.facebook} label="Facebook">
-                  <FacebookIcon className="size-4" />
-                </SocialLink>
-              )}
-              {social.instagram && (
-                <SocialLink href={social.instagram} label="Instagram">
-                  <InstagramIcon className="size-4" />
-                </SocialLink>
-              )}
-              {social.linkedin && (
-                <SocialLink href={social.linkedin} label="LinkedIn">
-                  <LinkedinIcon className="size-4" />
-                </SocialLink>
-              )}
-            </div>
+            <SocialLinks className="mt-5" />
           </div>
 
+          {/* Colunas 2 e 3: links */}
           <FooterColumn title="Institucional" links={footerNav.institucional} />
           <FooterColumn title="Soluções" links={footerNav.solucoes} />
 
+          {/* Coluna 4: contato */}
           <div>
             <h3 className="text-sm font-semibold text-foreground">Contato</h3>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-foreground/70">
@@ -73,24 +60,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border-subtle pt-6 text-xs text-foreground/60">
-          <p>
-            © {year} World System – Soluções em TI. Todos os direitos
-            reservados.
-          </p>
-        </div>
+        <p className="mt-12 border-t border-border-subtle pt-6 text-xs text-foreground/60">
+          © {new Date().getFullYear()} World System – Soluções em TI. Todos os
+          direitos reservados.
+        </p>
       </Container>
     </footer>
   );
 }
 
-function FooterColumn({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; href: string }[];
-}) {
+/** Coluna de links com título. */
+function FooterColumn({ title, links }: { title: string; links: NavLink[] }) {
   return (
     <div>
       <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -107,27 +87,5 @@ function FooterColumn({
         ))}
       </ul>
     </div>
-  );
-}
-
-function SocialLink({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className="flex size-9 items-center justify-center rounded-full border border-border-subtle text-foreground/70 transition-colors hover:border-brand-fg hover:text-brand-fg"
-    >
-      {children}
-    </a>
   );
 }
