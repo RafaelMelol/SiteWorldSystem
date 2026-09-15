@@ -7,7 +7,6 @@ import {
 } from "@/components/icons/SocialIcons";
 import { LogoMark } from "@/components/layout/LogoMark";
 import { Container } from "@/components/ui/Container";
-import { NewsletterForm } from "@/components/sections/NewsletterForm";
 import { footerNav } from "@/content/nav";
 import { contactInfo } from "@/content/contact";
 
@@ -71,16 +70,6 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-
-            <h3 className="mt-6 text-sm font-semibold text-foreground">
-              Newsletter
-            </h3>
-            <p className="mt-2 text-sm text-foreground/70">
-              Receba novidades e informações da World System por e-mail.
-            </p>
-            <div className="mt-3">
-              <NewsletterForm />
-            </div>
           </div>
         </div>
 
