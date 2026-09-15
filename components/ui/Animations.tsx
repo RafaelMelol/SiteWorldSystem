@@ -141,7 +141,11 @@ export function CountUp({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  // Só a margem de baixo é negativa: a contagem começa quando o número já
+  // subiu 100px na tela. Uma margem em todos os lados ("-100px") encolheria
+  // também as laterais, e no celular o número colado à esquerda nunca seria
+  // considerado visível — a contagem ficava travada em 0.
+  const inView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
   const prefersReducedMotion = useSafeReducedMotion();
   const [display, setDisplay] = useState(0);
 
