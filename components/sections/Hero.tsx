@@ -84,9 +84,9 @@ export function Hero() {
             <Reveal delay={160}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/70">
                 A World System oferece soluções completas em gestão e emissão
-                fiscal para indústria, atacado e varejo, unindo tecnologia,
-                experiência de mercado e atendimento personalizado para tornar a
-                gestão mais eficiente, segura e inteligente.
+                fiscal para pequenas indústrias, atacados e varejos, unindo
+                tecnologia, experiência de mercado e atendimento personalizado
+                para tornar a gestão mais eficiente, segura e inteligente.
               </p>
             </Reveal>
             <Reveal delay={240}>

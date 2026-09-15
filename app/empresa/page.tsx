@@ -9,7 +9,7 @@ import { companyOverview, companyPillars, segmentsServed } from "@/content/compa
 export const metadata: Metadata = {
   title: "Empresa",
   description:
-    "Conheça a história da World System: pioneira em soluções de TI desde 1993, com sede em Lagoa da Prata/MG, atendendo indústria, atacado e varejo.",
+    "Conheça a história da World System: pioneira em soluções de TI desde 1993, com sede em Lagoa da Prata/MG, atendendo pequenas indústrias, atacados e varejos.",
 };
 
 /**

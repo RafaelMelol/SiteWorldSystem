@@ -22,8 +22,8 @@ export function Footer() {
           <div>
             <LogoMark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground/70">
-              Soluções em TI para gestão e automação de indústria, atacado e
-              varejo desde 1993.
+              Soluções em TI para gestão e automação de pequenas indústrias,
+              atacados e varejos desde 1993.
             </p>
             <SocialLinks className="mt-5" />
           </div>

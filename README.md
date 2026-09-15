@@ -1,6 +1,6 @@
 # Site World System
 
-Site institucional da **World System – Soluções em TI** (Lagoa da Prata/MG), empresa de sistemas de gestão, PDV e emissão fiscal para indústria, atacado e varejo.
+Site institucional da **World System – Soluções em TI** (Lagoa da Prata/MG), empresa de sistemas de gestão, PDV e emissão fiscal para pequenas indústrias, atacados e varejos.
 
 ## Stack
 

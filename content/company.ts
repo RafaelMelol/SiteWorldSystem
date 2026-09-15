@@ -11,7 +11,7 @@ export const companyOverview = {
   headquarters: "Lagoa da Prata-MG",
   distanceFromBH: "187 km de Belo Horizonte",
   intro:
-    "Desde 1993, a World System transforma experiência e inovação em soluções de TI para gestão e automação comercial, atendendo indústrias, atacados e varejos com tecnologia, eficiência e confiança.",
+    "Desde 1993, a World System transforma experiência e inovação em soluções de TI para gestão e automação comercial, atendendo pequenas indústrias, atacados e varejos com tecnologia, eficiência e confiança.",
   mission:
     "Entregar soluções completas e confiáveis, combinando experiência, planejamento e assessoria especializada para oferecer um atendimento próximo e personalizado a cada cliente e parceiro.",
   commitment:

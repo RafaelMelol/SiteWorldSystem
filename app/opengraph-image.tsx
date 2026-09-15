@@ -82,7 +82,7 @@ export default function OpengraphImage() {
             color: "rgba(255,255,255,0.7)",
           }}
         >
-          Desde 1993 · Indústria, atacado e varejo
+          Desde 1993 · Pequenas indústrias, atacados e varejos
         </div>
       </div>
     ),

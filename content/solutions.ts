@@ -118,7 +118,7 @@ export const solutions: Solution[] = [
   {
     slug: "nfe-nfce",
     category: "Fiscal",
-    name: "NFe e NFCe",
+    name: "Emissor NFe e NFCe",
     tagline: "Emissão fiscal rápida e sem erros tributários",
     description:
       "Solução fiscal para diversos segmentos varejistas, com PDV integrado para emitir Nota Fiscal Eletrônica e Nota Fiscal de Consumidor Eletrônica com agilidade e conformidade com a legislação vigente.",
@@ -154,7 +154,7 @@ export const solutions: Solution[] = [
   {
     slug: "cte-mdfe",
     category: "Transporte",
-    name: "CTe, CTe OS e MDFe",
+    name: "Emissor CTe, CTe OS e MDFe",
     tagline: "Documentos fiscais para o transporte de mercadorias",
     description:
       "Emissão de documentos fiscais para acobertar o transporte de mercadorias e pessoas, com geração rápida e conformidade tributária.",

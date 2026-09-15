@@ -13,8 +13,8 @@ export const mainNav: NavSection[] = [
     children: [
       { label: "SCA 5.0 Pro – Varejo", href: "/solucoes/varejo" },
       { label: "SCA 5.0 Pro – Atacado", href: "/solucoes/atacado" },
-      { label: "NFe e NFCe", href: "/solucoes/nfe-nfce" },
-      { label: "CTe, CTe OS e MDFe", href: "/solucoes/cte-mdfe" },
+      { label: "Emissor NFe e NFCe", href: "/solucoes/nfe-nfce" },
+      { label: "Emissor CTe, CTe OS e MDFe", href: "/solucoes/cte-mdfe" },
     ],
   },
   { label: "Recursos", href: "/recursos" },
@@ -41,7 +41,7 @@ export const footerNav: Record<"institucional" | "solucoes", NavLink[]> = {
   solucoes: [
     { label: "SCA 5.0 Pro – Varejo", href: "/solucoes/varejo" },
     { label: "SCA 5.0 Pro – Atacado", href: "/solucoes/atacado" },
-    { label: "NFe e NFCe", href: "/solucoes/nfe-nfce" },
-    { label: "CTe, CTe OS e MDFe", href: "/solucoes/cte-mdfe" },
+    { label: "Emissor NFe e NFCe", href: "/solucoes/nfe-nfce" },
+    { label: "Emissor CTe, CTe OS e MDFe", href: "/solucoes/cte-mdfe" },
   ],
 };
