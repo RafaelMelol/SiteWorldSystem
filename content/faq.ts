@@ -1,11 +1,5 @@
 import type { FaqCategory } from "@/content/types";
 
-/**
- * Perguntas frequentes da página /suporte/faq.
- *
- * Cada categoria vira um bloco com título e uma lista de perguntas que abrem
- * e fecham. Para incluir uma pergunta, adicione um item em `items`.
- */
 export const faqCategories: FaqCategory[] = [
   {
     title: "SPED / EFD-Contribuições",

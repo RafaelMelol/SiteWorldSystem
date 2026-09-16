@@ -1,12 +1,5 @@
 import type { Solution } from "@/content/types";
 
-/**
- * Soluções (produtos) da World System.
- *
- * Cada item gera automaticamente uma página em /solucoes/{slug}, um cartão
- * nas listagens e uma entrada no sitemap. Para criar uma nova solução, basta
- * adicionar um objeto nesta lista.
- */
 export const solutions: Solution[] = [
   {
     slug: "varejo",
@@ -184,7 +177,6 @@ export const solutions: Solution[] = [
   },
 ];
 
-/** Busca uma solução pelo slug da URL. Retorna undefined se não existir. */
 export function getSolutionBySlug(slug: string) {
   return solutions.find((solution) => solution.slug === slug);
 }

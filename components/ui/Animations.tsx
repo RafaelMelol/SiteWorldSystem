@@ -4,20 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } fro
 import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { animate } from "motion";
 
-/**
- * Animações reutilizáveis (todas rodam no navegador).
- *
- * - Reveal: faz o conteúdo surgir ao entrar na tela
- * - Parallax: desloca o conteúdo num ritmo diferente da rolagem
- * - ScrollExit: afasta e esmaece o conteúdo quando ele sai pelo topo
- * - CountUp: número que conta de 0 até o valor final
- * - useSafeReducedMotion: indica se o visitante pediu "reduzir movimento"
- */
-
-/** Curva de desaceleração das animações: começa rápida e termina suave. */
 export const easeOutExpo = [0.16, 1, 0.3, 1] as const;
-
-/* Preferência "reduzir movimento" ----------------------------------------- */
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
@@ -27,14 +14,6 @@ function subscribeToReducedMotion(callback: () => void) {
   return () => mediaQuery.removeEventListener("change", callback);
 }
 
-/**
- * Retorna true se o visitante ativou "reduzir movimento" no sistema.
- *
- * No servidor e na primeira pintura responde sempre false, e só depois lê o
- * valor real. Assim o HTML do servidor e o do navegador começam iguais — o
- * hook useReducedMotion() do Motion lia o valor cedo demais e causava erro de
- * hidratação do React para quem tinha essa opção ligada.
- */
 export function useSafeReducedMotion(): boolean {
   return useSyncExternalStore(
     subscribeToReducedMotion,
@@ -43,12 +22,6 @@ export function useSafeReducedMotion(): boolean {
   );
 }
 
-/* Reveal ------------------------------------------------------------------ */
-
-/**
- * Surge com fade e leve subida na primeira vez que aparece na tela.
- * `delay` é em milissegundos, útil para escalonar os itens de uma lista.
- */
 export function Reveal({
   children,
   className,
@@ -63,7 +36,6 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      // once: anima só na primeira vez; margin: dispara um pouco antes do fim da tela.
       viewport={{ once: true, amount: 0.2, margin: "0px 0px -80px 0px" }}
       transition={{ duration: 0.65, delay: delay / 1000, ease: easeOutExpo }}
     >
@@ -72,12 +44,6 @@ export function Reveal({
   );
 }
 
-/* Parallax ---------------------------------------------------------------- */
-
-/**
- * Desloca o conteúdo até `range` pixels enquanto ele atravessa a tela,
- * criando sensação de profundidade. Valores pequenos (20 a 60) ficam melhores.
- */
 export function Parallax({
   children,
   range = 60,
@@ -88,7 +54,6 @@ export function Parallax({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  // Progresso de 0 (entrando por baixo da tela) a 1 (saindo por cima).
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [range, -range]);
 
@@ -99,16 +64,9 @@ export function Parallax({
   );
 }
 
-/* ScrollExit -------------------------------------------------------------- */
-
-/**
- * Enquanto o conteúdo sai pelo topo da tela, ele sobe um pouco, diminui e
- * esmaece, em vez de sumir de forma seca. Usado no hero.
- */
 export function ScrollExit({ children, className }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useSafeReducedMotion();
-  // Progresso de 0 (topo do elemento no topo da tela) a 1 (elemento todo acima).
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.97]);
@@ -125,12 +83,6 @@ export function ScrollExit({ children, className }: { children: ReactNode; class
   );
 }
 
-/* CountUp ----------------------------------------------------------------- */
-
-/**
- * Mostra um número contando de 0 até `value` quando ele aparece na tela.
- * Com "reduzir movimento" ativo, mostra direto o valor final.
- */
 export function CountUp({
   value,
   suffix = "",
@@ -141,10 +93,8 @@ export function CountUp({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  // Só a margem de baixo é negativa: a contagem começa quando o número já
-  // subiu 100px na tela. Uma margem em todos os lados ("-100px") encolheria
-  // também as laterais, e no celular o número colado à esquerda nunca seria
-  // considerado visível — a contagem ficava travada em 0.
+  // A margem negativa vale só para baixo; nas laterais ela deixaria de detectar
+  // o número que fica colado na borda esquerda no celular.
   const inView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
   const prefersReducedMotion = useSafeReducedMotion();
   const [display, setDisplay] = useState(0);

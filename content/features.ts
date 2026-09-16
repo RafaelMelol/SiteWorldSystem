@@ -1,11 +1,5 @@
 import type { FeatureGroup } from "@/content/types";
 
-/**
- * Recursos dos sistemas, agrupados por categoria.
- *
- * Cada categoria vira uma aba na seção "Recursos". A página inicial mostra as
- * 4 primeiras categorias; a página /recursos mostra todas.
- */
 export const featureGroups: FeatureGroup[] = [
   {
     title: "Plataforma e tecnologia",

@@ -12,10 +12,6 @@ export const metadata: Metadata = {
     "Conheça a história da World System: pioneira em soluções de TI desde 1993, com sede em Lagoa da Prata/MG, atendendo pequenas indústrias, atacados e varejos.",
 };
 
-/**
- * Página Empresa: apresentação, localização, princípios e diferenciais.
- * Textos em content/company.ts.
- */
 export default function EmpresaPage() {
   return (
     <>
@@ -25,7 +21,6 @@ export default function EmpresaPage() {
         description={companyOverview.intro}
       />
 
-      {/* Localização (esquerda) e princípios (direita) */}
       <section className="py-20 lg:py-24">
         <Container className="grid grid-cols-1 gap-16 lg:grid-cols-2">
           <Reveal>
@@ -57,7 +52,6 @@ export default function EmpresaPage() {
         </Container>
       </section>
 
-      {/* Diferenciais em 4 cartões */}
       <section className="border-t border-border-subtle bg-surface-muted py-20 lg:py-24">
         <Container>
           <Reveal>
@@ -88,7 +82,6 @@ export default function EmpresaPage() {
   );
 }
 
-/** Caixa de texto com borda, com título opcional. */
 function InfoBox({ title, children }: { title?: string; children: ReactNode }) {
   return (
     <div className="rounded-xl border border-border-subtle bg-surface p-5 transition-colors duration-300 ease-out hover:border-brand-200">

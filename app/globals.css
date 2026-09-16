@@ -1,44 +1,19 @@
-/*
- * Estilos globais do site.
- *
- *   1. Cores do tema claro (padrão)
- *   2. Cores do tema escuro
- *   3. Tokens usados pelas classes do Tailwind
- *   4. Base: corpo, bordas, rolagem, seleção e acessibilidade
- *   5. Transições
- *   6. Fundo animado do hero
- *   7. Cursor personalizado
- *
- * Observação: regras escritas fora de @layer vencem qualquer classe do
- * Tailwind (que fica dentro de @layer). Algumas regras abaixo contam com isso.
- */
-
 @import "tailwindcss";
 
-/* ----------------------------------------------------------------------- */
-/* 1. Cores do tema claro (padrão)                                         */
-/* ----------------------------------------------------------------------- */
-
 :root {
-  /* Superfícies. O tom bege fica só no fundo da página; cartões e bordas são neutros. */
   --background: #f7f5f0;
   --foreground: #10151f;
   --surface: #ffffff;
   --surface-muted: #eef1f6;
   --border-subtle: #dde3ec;
 
-  /* Azul da marca para TEXTO (links, rótulos). Muda por tema para continuar
-     legível; já as escalas brand-* e accent-* abaixo são iguais nos dois temas. */
   --brand-fg: #21529f;
   --brand-fg-hover: #1c437f;
 
-  /* Opacidade dos numerais de fundo nos cartões de solução (01, 02...). */
   --watermark-opacity: 0.12;
 
-  /* Filtro aplicado à logo: nenhum no tema claro. */
   --logo-filter: none;
 
-  /* Escala azul da marca */
   --brand-50: #eef4fc;
   --brand-100: #d9e6f7;
   --brand-200: #b3cdef;
@@ -51,7 +26,6 @@
   --brand-900: #162f54;
   --brand-950: #0d1c34;
 
-  /* Escala verde-água de destaque */
   --accent-50: #eafbf6;
   --accent-100: #cdf3e7;
   --accent-200: #9be6d1;
@@ -64,17 +38,6 @@
   --accent-900: #10423b;
 }
 
-/* ----------------------------------------------------------------------- */
-/* 2. Cores do tema escuro                                                 */
-/* ----------------------------------------------------------------------- */
-/*
- * O tema escuro vale em dois casos:
- *   - o sistema do visitante está em modo escuro e ele não escolheu o claro;
- *   - o visitante escolheu o escuro no botão (data-theme="dark" no <html>).
- * Os dois blocos têm os mesmos valores, pois o CSS não permite juntar uma
- * media query e um seletor numa única regra.
- */
-
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --background: #0b0e14;
@@ -85,7 +48,6 @@
     --brand-fg: #86b0e8;
     --brand-fg-hover: #b0cdf2;
     --watermark-opacity: 0.04;
-    /* O subtítulo da logo é azul-escuro: um halo claro devolve o contraste. */
     --logo-filter: brightness(1.12) drop-shadow(0 0 1px rgba(255, 255, 255, 0.9))
       drop-shadow(0 0 2px rgba(255, 255, 255, 0.55));
   }
@@ -103,11 +65,6 @@
   --logo-filter: brightness(1.12) drop-shadow(0 0 1px rgba(255, 255, 255, 0.9))
     drop-shadow(0 0 2px rgba(255, 255, 255, 0.55));
 }
-
-/* ----------------------------------------------------------------------- */
-/* 3. Tokens usados pelas classes do Tailwind                              */
-/* ----------------------------------------------------------------------- */
-/* Ex: --color-surface gera bg-surface, text-surface, border-surface etc. */
 
 @theme inline {
   --color-background: var(--background);
@@ -148,7 +105,6 @@
   --shadow-card: 0 2px 4px -1px rgb(16 21 31 / 0.04), 0 8px 24px -8px rgb(16 21 31 / 0.10);
   --shadow-elevated: 0 12px 32px -12px rgb(16 21 31 / 0.22);
 
-  /* Classe animate-fade-in */
   --animate-fade-in: fade-in 0.6s ease-out forwards;
 
   @keyframes fade-in {
@@ -161,16 +117,11 @@
   }
 }
 
-/* ----------------------------------------------------------------------- */
-/* 4. Base                                                                 */
-/* ----------------------------------------------------------------------- */
-
 * {
   border-color: var(--border-subtle);
 }
 
-/* Borda realmente transparente. A classe border-transparent do Tailwind
-   perde para a regra acima, por estar dentro de @layer. */
+/* Vence a regra acima; border-transparent do Tailwind não vence. */
 .border-clear {
   border-color: transparent;
 }
@@ -185,7 +136,6 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Esconde a barra de rolagem nativa; a rolagem continua funcionando. */
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -200,7 +150,6 @@ body {
   color: var(--brand-950);
 }
 
-/* Link "Pular para o conteúdo": fica fora da tela até receber foco pelo teclado. */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -217,17 +166,10 @@ body {
   left: 0;
 }
 
-/* Logo com o filtro do tema atual (ver --logo-filter). */
 .logo-mark {
   filter: var(--logo-filter);
 }
 
-/* ----------------------------------------------------------------------- */
-/* 5. Transições                                                           */
-/* ----------------------------------------------------------------------- */
-
-/* Troca suave de cores ao alternar o tema. Só propriedades de cor, para não
-   interferir nas animações de posição feitas com o Motion. */
 *,
 *::before,
 *::after {
@@ -236,8 +178,6 @@ body {
   transition-timing-function: ease;
 }
 
-/* Botões com preenchimento branco da esquerda para a direita (fillSweep em
-   Button.tsx): além das cores, também anima o background-size. */
 .btn-sweep {
   transition-property: background-color, border-color, color, fill, stroke, box-shadow,
     background-size;
@@ -245,7 +185,6 @@ body {
   transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* Quem ativou "reduzir movimento" no sistema recebe animações instantâneas. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -260,17 +199,9 @@ body {
   }
 }
 
-/* ----------------------------------------------------------------------- */
-/* 6. Fundo animado do hero                                                */
-/* ----------------------------------------------------------------------- */
-/* Grid, dois blobs de luz e um brilho que segue o mouse (ver Hero.tsx).
-   Usa apenas rgba() e gradientes simples, que funcionam em qualquer navegador. */
-
-/* Grid: linhas finas nas duas direções e um degradê que apaga a parte de baixo. */
 .hero-grid {
   position: absolute;
   inset: 0;
-  /* A primeira camada (o degradê) fica por cima das linhas. */
   background-image:
     linear-gradient(to bottom, transparent 0%, transparent 55%, var(--background) 100%),
     linear-gradient(rgba(108, 151, 205, 0.14) 1px, transparent 1px),
@@ -281,8 +212,6 @@ body {
     hero-grid-pulse 8s ease-in-out infinite;
 }
 
-/* Desliza as linhas na diagonal, exatamente um quadrado (72px) por ciclo,
-   para o loop recomeçar sem salto. O degradê fica parado. */
 @keyframes hero-grid-pan {
   from {
     background-position: 0 0, 0 0, 0 0;
@@ -292,7 +221,6 @@ body {
   }
 }
 
-/* Pulsação lenta na intensidade das linhas. */
 @keyframes hero-grid-pulse {
   0%,
   100% {
@@ -303,7 +231,6 @@ body {
   }
 }
 
-/* Blobs: círculos coloridos bem desfocados que flutuam devagar. */
 .hero-ambient {
   position: absolute;
   border-radius: 9999px;
@@ -326,7 +253,6 @@ body {
   top: 10%;
   background: rgba(24, 190, 166, 0.14);
   animation: hero-blob-drift-b 26s ease-in-out infinite;
-  /* Começa no meio do ciclo, para os dois blobs não se moverem juntos. */
   animation-delay: -6s;
 }
 
@@ -356,7 +282,6 @@ body {
   }
 }
 
-/* Brilho azul que segue o mouse (a posição é atualizada pelo Hero.tsx). */
 .hero-mouse-glow {
   position: absolute;
   width: 520px;
@@ -381,13 +306,6 @@ body {
     height: 350px;
   }
 }
-
-/* ----------------------------------------------------------------------- */
-/* 7. Cursor personalizado                                                 */
-/* ----------------------------------------------------------------------- */
-/* Círculo branco com mix-blend-mode: difference, que inverte a cor do que está
-   embaixo. A classe custom-cursor-active é adicionada pelo CustomCursor
-   (Effects.tsx) só em computadores; apenas então a seta padrão é escondida. */
 
 .custom-cursor {
   position: fixed;

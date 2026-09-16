@@ -8,13 +8,6 @@ import { solutions } from "@/content/solutions";
 import type { Solution } from "@/content/types";
 import { cn } from "@/lib/utils";
 
-/**
- * Listagem das soluções (dados em content/solutions.ts).
- *
- * - SolutionsOverview: seção completa da página inicial (título + lista)
- * - SolutionList: só a lista de cartões, usada também em /solucoes
- */
-
 export function SolutionsOverview() {
   return (
     <section className="py-20 lg:py-28">
@@ -32,7 +25,6 @@ export function SolutionsOverview() {
   );
 }
 
-/** Cartões das soluções, um embaixo do outro, surgindo em sequência. */
 export function SolutionList({ className }: { className?: string }) {
   return (
     <div className={cn("flex flex-col gap-6", className)}>
@@ -45,11 +37,9 @@ export function SolutionList({ className }: { className?: string }) {
   );
 }
 
-/** Cartão de uma solução: numeral de fundo, categoria, nome, descrição, segmentos e botão. */
 function SolutionCard({ solution, index }: { solution: Solution; index: number }) {
   return (
     <div className="group relative overflow-hidden rounded-xl border border-border-subtle bg-surface p-8 transition-colors duration-300 ease-out hover:border-brand-200 lg:p-10">
-      {/* Numeral grande e apagado no canto (01, 02...). A opacidade muda por tema, em globals.css. */}
       <span
         aria-hidden
         style={{ opacity: "var(--watermark-opacity)" }}

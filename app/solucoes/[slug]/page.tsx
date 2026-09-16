@@ -10,21 +10,12 @@ import { Container } from "@/components/ui/Section";
 import { getSolutionBySlug, solutions } from "@/content/solutions";
 import { JsonLd, getSolutionJsonLd } from "@/lib/seo";
 
-/**
- * Página de uma solução (/solucoes/varejo, /solucoes/atacado...).
- *
- * Um único arquivo atende todas as soluções: o [slug] no nome da pasta é a
- * parte variável da URL, e os dados vêm de content/solutions.ts.
- */
-
 type PageProps = { params: Promise<{ slug: string }> };
 
-// Gera todas as páginas de solução durante o build (páginas estáticas, mais rápidas).
 export function generateStaticParams() {
   return solutions.map((solution) => ({ slug: solution.slug }));
 }
 
-// Título e descrição próprios de cada solução (aba do navegador e buscadores).
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const solution = getSolutionBySlug((await params).slug);
   return solution ? { title: solution.name, description: solution.description } : {};
@@ -33,15 +24,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function SolutionPage({ params }: PageProps) {
   const solution = getSolutionBySlug((await params).slug);
 
-  // Endereço de solução que não existe mostra a página 404.
   if (!solution) notFound();
 
   return (
     <>
-      {/* Dados da solução para buscadores (não aparece na tela) */}
       <JsonLd data={getSolutionJsonLd(solution)} />
 
-      {/* Cabeçalho: categoria, nome, descrição, segmentos e botões */}
       <section className="border-b border-border-subtle bg-surface-muted py-16 lg:py-20">
         <Container>
           <Link
@@ -104,7 +92,6 @@ export default async function SolutionPage({ params }: PageProps) {
         </Container>
       </section>
 
-      {/* Recursos incluídos, agrupados em cartões */}
       <section className="py-20 lg:py-24">
         <Container>
           <Reveal>
@@ -118,7 +105,6 @@ export default async function SolutionPage({ params }: PageProps) {
                   <ul className="mt-4 flex flex-col gap-2.5">
                     {group.items.map((item) => (
                       <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/70">
-                        {/* Marcador em forma de ponto */}
                         <span
                           aria-hidden
                           className="mt-[0.4rem] size-1.5 shrink-0 rounded-full bg-accent-500"

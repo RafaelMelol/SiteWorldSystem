@@ -11,23 +11,15 @@ import { Container, SectionHeading } from "@/components/ui/Section";
 import { featureGroups } from "@/content/features";
 import { JsonLd, getOrganizationJsonLd } from "@/lib/seo";
 
-/**
- * Página inicial.
- *
- * Seções, na ordem: hero → soluções → sobre a empresa → recursos →
- * integrações → faixa de contato.
- */
 export default function HomePage() {
   return (
     <>
-      {/* Dados da empresa para buscadores (não aparece na tela) */}
       <JsonLd data={getOrganizationJsonLd()} />
 
       <Hero />
       <SolutionsOverview />
       <CompanyTeaser />
 
-      {/* Recursos: texto à esquerda e abas com as 4 primeiras categorias à direita */}
       <section className="py-20 lg:py-28">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.3fr] lg:items-start">
           <Reveal>
@@ -53,7 +45,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Integrações: prévia com as 6 primeiras */}
       <section className="border-t border-border-subtle py-20 lg:py-28">
         <Container>
           <Reveal>

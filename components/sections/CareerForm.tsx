@@ -12,20 +12,12 @@ import {
   type FormState,
 } from "@/components/ui/Form";
 
-/**
- * Formulário da página Oportunidades (envio de currículo).
- *
- * Por causa do arquivo anexado, os dados vão como FormData (multipart) para
- * /api/oportunidades, e não em JSON.
- */
-
 const DEFAULT_ERROR = "Não foi possível enviar seu currículo. Tente novamente.";
 
 export function CareerForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, setState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState(DEFAULT_ERROR);
-  // Nome do arquivo escolhido, exibido no lugar de "Clique para selecionar".
   const [fileName, setFileName] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -39,7 +31,6 @@ export function CareerForm() {
       });
 
       if (!response.ok) {
-        // Mostra a mensagem do servidor (ex: "O arquivo deve ter no máximo 5 MB.").
         const data = await response.json();
         setErrorMessage(data?.message ?? DEFAULT_ERROR);
         setState("error");
@@ -78,7 +69,6 @@ export function CareerForm() {
         required
         hint="Tamanho máximo de 5 MB."
       >
-        {/* O input de arquivo fica invisível; a área tracejada é o rótulo clicável. */}
         <label
           htmlFor="career-resume"
           className="flex cursor-pointer items-center justify-center gap-2.5 rounded-lg border border-dashed border-border-subtle bg-surface-muted px-4 py-6 text-sm text-foreground/60 transition-colors hover:border-brand-400"

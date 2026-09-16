@@ -1,12 +1,5 @@
 import type { ContactInfo, SupportHours } from "@/content/types";
 
-/**
- * Dados de contato e horário de atendimento.
- *
- * Alterar aqui atualiza, de uma vez, o rodapé, as páginas de Contato e
- * Suporte, o mapa e os dados estruturados lidos pelo Google.
- */
-
 export const contactInfo: ContactInfo = {
   address: {
     street: "Rua Santa Catarina, 273",
@@ -15,10 +8,8 @@ export const contactInfo: ContactInfo = {
     city: "Lagoa da Prata",
     state: "MG",
   },
-  // Formato internacional (+55 DDD número), usado nos links de ligação e no WhatsApp.
   phone: "+553732613366",
   phoneDisplay: "(37) 3261-3366",
-  // Plantão de sábado: somente telefone ou acesso remoto.
   onCallPhone: "+5537988266252",
   onCallPhoneDisplay: "(37) 98826-6252",
   email: "contato@wsionline.com.br",

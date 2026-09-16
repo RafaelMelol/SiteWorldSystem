@@ -3,20 +3,10 @@ import type { HTMLAttributes } from "react";
 import { Reveal } from "@/components/ui/Animations";
 import { cn } from "@/lib/utils";
 
-/**
- * Blocos de estrutura das páginas.
- *
- * - Container: centraliza o conteúdo e limita a largura
- * - SectionHeading: topo de uma seção (rótulo, título e descrição)
- * - PageHeader: faixa de abertura das páginas internas
- */
-
-/** Centraliza o conteúdo, limita a largura e aplica as margens laterais. */
 export function Container({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return <div className={cn("mx-auto w-full max-w-7xl px-6 lg:px-8", className)} {...props} />;
 }
 
-/** Topo de uma seção: rótulo pequeno em caixa-alta, título e descrição opcional. */
 export function SectionHeading({
   eyebrow,
   title,
@@ -49,11 +39,6 @@ export function SectionHeading({
   );
 }
 
-/**
- * Faixa de abertura das páginas internas: fundo suave com rótulo, título
- * principal (h1) e descrição centralizados. Com `backLink`, mostra um link
- * de "voltar" acima do título.
- */
 export function PageHeader({
   eyebrow,
   title,

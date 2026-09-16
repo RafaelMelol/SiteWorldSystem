@@ -6,18 +6,12 @@ import { ChevronDown } from "lucide-react";
 import { easeOutExpo } from "@/components/ui/Animations";
 import { cn } from "@/lib/utils";
 
-/**
- * Lista de perguntas que abrem e fecham (acordeão), usada no FAQ.
- * Só uma resposta fica aberta por vez.
- */
 export function Accordion({
   items,
 }: {
   items: { question: string; answer: string }[];
 }) {
-  // Índice da pergunta aberta (null = todas fechadas).
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  // Prefixo único para ligar cada botão ao seu painel, para leitores de tela.
   const baseId = useId();
 
   return (
@@ -35,7 +29,6 @@ export function Accordion({
                 type="button"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                // Clicar na pergunta aberta fecha; em outra, troca.
                 onClick={() => setOpenIndex(isOpen ? null : index)}
                 className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-medium text-foreground transition-colors hover:bg-surface-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-500 sm:text-base"
               >
@@ -50,7 +43,6 @@ export function Accordion({
               </button>
             </h3>
 
-            {/* A resposta abre e fecha animando a altura. */}
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div

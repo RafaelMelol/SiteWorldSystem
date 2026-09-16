@@ -2,12 +2,6 @@ import type { SVGProps } from "react";
 import { contactInfo } from "@/content/contact";
 import { cn } from "@/lib/utils";
 
-/**
- * Botões redondos com as redes sociais da World System (Facebook, Instagram
- * e LinkedIn). Usado no rodapé e na página de Contato.
- *
- * Os endereços vêm de content/contact.ts; rede sem link não aparece.
- */
 export function SocialLinks({ className }: { className?: string }) {
   const { social } = contactInfo;
   const networks = [
@@ -33,8 +27,6 @@ export function SocialLinks({ className }: { className?: string }) {
     </div>
   );
 }
-
-/* Ícones das redes, em SVG próprio (a biblioteca lucide não inclui logos de marcas). */
 
 function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   return (

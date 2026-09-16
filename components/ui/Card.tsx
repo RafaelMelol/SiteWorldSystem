@@ -1,16 +1,6 @@
 import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-/**
- * Cartões, selos e etiquetas.
- *
- * - Card, CardTitle e CardDescription: caixa com borda, base da maioria
- *   dos blocos do site
- * - Badge: selo em caixa-alta que indica a categoria (ex: "VAREJO")
- * - TagList: lista de etiquetas discretas (ex: segmentos atendidos)
- */
-
-/** Caixa com borda e fundo. A borda fica azulada ao passar o mouse. */
 export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
@@ -44,7 +34,6 @@ export function CardDescription({
   );
 }
 
-/** Selo pequeno de categoria. */
 export function Badge({ className, ...props }: HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
@@ -57,7 +46,6 @@ export function Badge({ className, ...props }: HTMLAttributes<HTMLSpanElement>) 
   );
 }
 
-/** Etiquetas lado a lado, quebrando para a linha de baixo quando falta espaço. */
 export function TagList({
   items,
   className,

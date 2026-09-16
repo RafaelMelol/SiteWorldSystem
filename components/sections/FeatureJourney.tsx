@@ -6,13 +6,6 @@ import { easeOutExpo } from "@/components/ui/Animations";
 import type { FeatureGroup } from "@/content/types";
 import { cn } from "@/lib/utils";
 
-/**
- * Recursos por categoria: uma linha de abas e um painel que mostra os itens
- * da aba selecionada. Usado na página inicial e em /recursos.
- *
- * Os contadores ("X categorias · Y recursos") são calculados a partir dos
- * próprios dados, então nunca ficam desatualizados.
- */
 export function FeatureJourney({ groups }: { groups: FeatureGroup[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = groups[activeIndex] ?? groups[0];
@@ -20,7 +13,6 @@ export function FeatureJourney({ groups }: { groups: FeatureGroup[] }) {
 
   return (
     <div>
-      {/* Resumo: quantidade de categorias e de recursos */}
       <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-foreground/60">
         <span>
           <strong className="font-semibold text-foreground">{groups.length}</strong>{" "}
@@ -34,7 +26,6 @@ export function FeatureJourney({ groups }: { groups: FeatureGroup[] }) {
       </div>
 
       <div className="relative overflow-hidden rounded-tr-3xl border border-border-subtle bg-surface/70 backdrop-blur-xl">
-        {/* Manchas de cor decorativas no fundo do painel */}
         <div
           aria-hidden
           className="pointer-events-none absolute -top-20 right-0 size-64 rounded-full bg-accent-500/10 blur-3xl"
@@ -44,7 +35,6 @@ export function FeatureJourney({ groups }: { groups: FeatureGroup[] }) {
           className="pointer-events-none absolute -bottom-24 left-0 size-64 rounded-full bg-brand-500/10 blur-3xl"
         />
 
-        {/* Abas */}
         <div
           role="tablist"
           aria-label="Categorias de recursos"
@@ -66,7 +56,6 @@ export function FeatureJourney({ groups }: { groups: FeatureGroup[] }) {
                     : "text-foreground/60 hover:bg-surface hover:text-foreground"
                 )}
               >
-                {/* Fundo azul da aba ativa. O layoutId faz ele deslizar até a nova aba. */}
                 {isActive && (
                   <motion.span
                     layoutId="feature-tab-active"
@@ -80,10 +69,6 @@ export function FeatureJourney({ groups }: { groups: FeatureGroup[] }) {
           })}
         </div>
 
-        {/* Painel da aba ativa. A `key` recria o painel a cada troca de aba,
-            disparando a animação de entrada. Não usamos AnimatePresence com
-            mode="wait" porque ele espera a saída do painel antigo terminar
-            e, se essa animação travar, o conteúdo novo nunca aparece. */}
         <motion.div
           key={active.title}
           initial={{ opacity: 0, y: 10 }}
@@ -98,7 +83,6 @@ export function FeatureJourney({ groups }: { groups: FeatureGroup[] }) {
             {active.description}
           </p>
 
-          {/* Itens entram um após o outro (atraso de 40 ms entre eles) */}
           <ul className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {active.items.map((item, index) => (
               <motion.li

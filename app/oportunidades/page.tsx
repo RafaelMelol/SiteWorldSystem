@@ -10,10 +10,6 @@ export const metadata: Metadata = {
     "Envie seu currículo para a World System. Ainda não há vagas específicas divulgadas, mas teremos prazer em conhecer o seu perfil.",
 };
 
-/**
- * Página Oportunidades: convite para enviar o currículo (esquerda) e o
- * formulário de envio (direita).
- */
 export default function OportunidadesPage() {
   return (
     <section className="py-20 lg:py-28">

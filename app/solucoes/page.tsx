@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     "Conheça as soluções da World System: SCA 5.0 Pro para varejo e atacado, emissão de NFe/NFCe e documentos fiscais de transporte CTe, CTe OS e MDFe.",
 };
 
-/** Página Soluções: lista completa das soluções (content/solutions.ts). */
 export default function SolucoesPage() {
   return (
     <>

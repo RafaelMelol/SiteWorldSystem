@@ -13,30 +13,16 @@ import { mainNav } from "@/content/nav";
 import type { NavSection } from "@/content/types";
 import { cn } from "@/lib/utils";
 
-/**
- * Cabeçalho fixo do site.
- *
- * - No topo da página fica transparente; ao rolar, ganha fundo, borda e sombra.
- * - A partir de 1280px (xl) mostra o menu completo com submenus; abaixo disso,
- *   um botão abre o menu mobile. Logo, 6 itens e o botão de contato precisam de
- *   cerca de 1.220px lado a lado — em telas menores o botão ficava espremido.
- * - Os links vêm de content/nav.ts.
- */
-
-// Aparência dos itens do menu no desktop (links e botões de submenu).
 const desktopItemClass =
   "rounded-lg px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-surface-muted hover:text-foreground";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  // Rótulo do submenu aberto no desktop (null = nenhum).
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
-  // Fecha os menus ao trocar de página. Fazer isso durante a renderização,
-  // e não num useEffect, evita uma renderização extra.
   const [lastPathname, setLastPathname] = useState(pathname);
   if (pathname !== lastPathname) {
     setLastPathname(pathname);
@@ -44,7 +30,6 @@ export function Header() {
     setOpenDropdown(null);
   }
 
-  // Fecha o submenu ao clicar fora do cabeçalho e fecha tudo com a tecla Esc.
   useEffect(() => {
     function onClickOutside(event: MouseEvent) {
       if (!headerRef.current?.contains(event.target as Node)) setOpenDropdown(null);
@@ -63,7 +48,6 @@ export function Header() {
     };
   }, []);
 
-  // Trava a rolagem da página enquanto o menu mobile está aberto.
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => {
@@ -71,7 +55,6 @@ export function Header() {
     };
   }, [mobileOpen]);
 
-  // Detecta quando a página saiu do topo, para mudar o visual do cabeçalho.
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -98,7 +81,6 @@ export function Header() {
           <LogoMark />
         </Link>
 
-        {/* Menu desktop */}
         <nav aria-label="Navegação principal" className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) => (
@@ -123,7 +105,6 @@ export function Header() {
                       />
                     </button>
 
-                    {/* Submenu */}
                     <AnimatePresence>
                       {openDropdown === item.label && (
                         <motion.div
@@ -156,7 +137,6 @@ export function Header() {
           </ul>
         </nav>
 
-        {/* Ações no desktop: tema e contato */}
         <div className="hidden items-center gap-3 xl:flex">
           <ThemeToggle />
           <Link href="/contato" className={buttonVariants({ size: "sm" })}>
@@ -164,7 +144,6 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Ações no mobile: tema e botão do menu (o ícone gira ao alternar) */}
         <div className="flex items-center gap-2 xl:hidden">
           <ThemeToggle />
           <button
@@ -191,7 +170,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Menu mobile: abre para baixo animando a altura */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -230,7 +208,6 @@ export function Header() {
   );
 }
 
-/** Item do menu mobile que expande para mostrar os links do submenu. */
 function MobileDropdown({ item }: { item: NavSection }) {
   const [open, setOpen] = useState(false);
 

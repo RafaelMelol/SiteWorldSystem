@@ -16,14 +16,9 @@ export const metadata: Metadata = {
     "Fale com a World System – Soluções em TI. Rua Santa Catarina, 273, Lagoa da Prata/MG. Telefone (37) 3261-3366, e-mail contato@wsionline.com.br.",
 };
 
-/**
- * Página de Contato: canais de atendimento e mapa à esquerda, formulário à
- * direita. Todos os dados vêm de content/contact.ts.
- */
 export default function ContatoPage() {
   const { address, phone, phoneDisplay, email } = contactInfo;
 
-  // Mapa do Google montado a partir do endereço (não precisa de chave de API).
   const fullAddress = `${address.street}, ${address.neighborhood}, ${address.city}/${address.state}, ${address.zip}`;
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(fullAddress)}&output=embed`;
 
@@ -44,9 +39,7 @@ export default function ContatoPage() {
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.3fr]">
-          {/* Coluna da esquerda: canais, redes sociais e mapa */}
           <Reveal className="flex flex-col gap-5">
-            {/* WhatsApp em destaque */}
             <Card className="flex flex-col items-start gap-4 border-brand-200 bg-brand-50/40 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-start gap-4">
                 <MessageCircle className="mt-0.5 size-5 shrink-0 text-brand-fg" aria-hidden />
@@ -105,7 +98,6 @@ export default function ContatoPage() {
             </div>
           </Reveal>
 
-          {/* Coluna da direita: formulário */}
           <Reveal delay={100}>
             <Card className="lg:p-8">
               <h2 className="text-xl font-semibold text-foreground">Envie uma mensagem</h2>
@@ -121,7 +113,6 @@ export default function ContatoPage() {
   );
 }
 
-/** Cartão de um canal de contato: ícone, título e conteúdo. */
 function ContactChannel({
   icon: Icon,
   title,

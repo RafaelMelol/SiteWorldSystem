@@ -9,21 +9,11 @@ import { buttonVariants } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
 import { companyOverview } from "@/content/company";
 
-/**
- * Hero da página inicial: título, texto, botões e a ilustração do painel,
- * sobre um fundo animado (grid, blobs de luz e brilho que segue o mouse).
- *
- * A aparência do fundo fica em globals.css, na seção "Fundo animado do hero".
- */
 export function Hero() {
   const glowRef = useRef<HTMLDivElement>(null);
-  // Onde o mouse está (alvo) e onde o brilho está agora, em % da seção.
   const target = useRef({ x: 50, y: 50 });
   const current = useRef({ x: 50, y: 50 });
 
-  // A cada quadro, o brilho percorre 8% da distância até o mouse, o que cria
-  // o movimento suave de "seguir atrasado". Como só reage ao cursor (igual a
-  // um efeito de hover), não é desligado por "reduzir movimento".
   useEffect(() => {
     let frameId = 0;
     function follow() {
@@ -39,7 +29,6 @@ export function Hero() {
     return () => cancelAnimationFrame(frameId);
   }, []);
 
-  // Converte a posição do mouse em porcentagem da área da seção.
   function handleMouseMove(event: MouseEvent<HTMLElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
     target.current = {
@@ -48,19 +37,16 @@ export function Hero() {
     };
   }
 
-  // Ao sair da seção, o brilho volta devagar para o centro.
   function handleMouseLeave() {
     target.current = { x: 50, y: 50 };
   }
 
   return (
-    // -mt-18 puxa a seção para trás do cabeçalho fixo, que é transparente no topo.
     <section
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative isolate -mt-18 flex min-h-dvh flex-col overflow-hidden border-b border-border-subtle bg-surface"
     >
-      {/* Camadas do fundo animado, atrás do conteúdo (z-index negativo) */}
       <div aria-hidden className="hero-grid pointer-events-none -z-30" />
       <div aria-hidden className="hero-ambient hero-ambient-blue pointer-events-none -z-20" />
       <div aria-hidden className="hero-ambient hero-ambient-green pointer-events-none -z-20" />
@@ -68,7 +54,6 @@ export function Hero() {
 
       <ScrollExit className="flex flex-1 flex-col">
         <Container className="grid flex-1 grid-cols-1 content-center items-center gap-12 pt-28 pb-16 lg:grid-cols-2 lg:py-20">
-          {/* Coluna de texto: cada bloco surge com um pequeno atraso */}
           <div>
             <Reveal>
               <span className="inline-flex items-center rounded-full border border-border-subtle bg-surface-muted px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-fg">
@@ -111,7 +96,6 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Ilustração do painel, com leve parallax na rolagem */}
           <Parallax range={22} className="animate-fade-in">
             <DashboardMockup />
           </Parallax>
@@ -125,7 +109,6 @@ export function Hero() {
   );
 }
 
-/** Botão com seta no pé do hero que rola suavemente até a próxima seção. */
 function ScrollCue() {
   const buttonRef = useRef<HTMLButtonElement>(null);
 

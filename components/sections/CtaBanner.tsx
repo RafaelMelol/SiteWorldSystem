@@ -4,10 +4,6 @@ import { Reveal } from "@/components/ui/Animations";
 import { buttonVariants } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
 
-/**
- * Faixa azul de chamada para contato, exibida no fim das páginas.
- * O botão principal leva a /contato e o secundário a /solucoes.
- */
 export function CtaBanner({
   title,
   description,
@@ -20,7 +16,6 @@ export function CtaBanner({
   return (
     <section className="relative overflow-hidden">
       <Reveal className="relative bg-gradient-to-br from-brand-950 via-brand-700 to-accent-700">
-        {/* Brilho azul mais claro no lado esquerdo */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_80%_at_15%_50%,var(--brand-500),transparent)] opacity-40"

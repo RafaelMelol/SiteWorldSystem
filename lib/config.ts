@@ -1,10 +1,3 @@
-/**
- * Configurações gerais do site.
- *
- * A URL pública vem da variável de ambiente NEXT_PUBLIC_SITE_URL (cadastrada
- * na Vercel). Sem ela, usa o domínio oficial. É usada nos metadados, no
- * sitemap, no robots.txt e nas prévias de link em redes sociais.
- */
 export const siteConfig = {
   name: "World System - Soluções em TI",
   shortName: "World System",

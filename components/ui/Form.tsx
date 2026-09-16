@@ -5,15 +5,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/**
- * Peças dos formulários de Contato e Oportunidades.
- *
- * - Field: rótulo, campo e dica ou erro logo abaixo
- * - Input e Textarea: campos de texto no estilo do site
- * - Honeypot: campo invisível contra spam
- * - FormStatus: aviso de "enviando", sucesso ou erro
- */
-
 export function Field({
   label,
   htmlFor,
@@ -38,7 +29,6 @@ export function Field({
         {required && <span className="text-brand-fg"> *</span>}
       </label>
       {children}
-      {/* A dica some quando há erro, para não empilhar duas mensagens. */}
       {hint && !error && <p className="text-xs text-foreground/60">{hint}</p>}
       {error && (
         <p role="alert" className="text-xs font-medium text-red-600">
@@ -49,7 +39,6 @@ export function Field({
   );
 }
 
-// Estilo comum aos campos. Com aria-invalid="true", a borda fica vermelha.
 const fieldStyles =
   "w-full rounded-lg border border-border-subtle bg-surface px-3.5 py-2.5 text-sm text-foreground placeholder:text-foreground/40 transition-colors focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 disabled:opacity-50 aria-[invalid=true]:border-red-500";
 
@@ -64,11 +53,6 @@ export function Textarea({
   return <textarea className={cn(fieldStyles, "min-h-32 resize-y", className)} {...props} />;
 }
 
-/**
- * Armadilha para robôs: um campo "website" escondido. Pessoas não o veem nem
- * chegam nele pelo teclado; robôs costumam preencher todos os campos. Se ele
- * chegar preenchido, a rota de API descarta o envio.
- */
 export function Honeypot({ id }: { id: string }) {
   return (
     <div className="hidden" aria-hidden="true">
@@ -78,10 +62,8 @@ export function Honeypot({ id }: { id: string }) {
   );
 }
 
-/** Momento do envio de um formulário. */
 export type FormState = "idle" | "loading" | "success" | "error";
 
-// Aparência de cada aviso ("idle" não mostra nada).
 const statusStyles = {
   loading: {
     role: "status",
@@ -103,7 +85,6 @@ const statusStyles = {
   },
 } as const;
 
-/** Aviso animado ao lado do botão de enviar. */
 export function FormStatus({
   state,
   successMessage,
@@ -118,7 +99,6 @@ export function FormStatus({
     state === "loading" ? "Enviando..." : state === "success" ? successMessage : errorMessage;
 
   return (
-    // mode="wait": o aviso anterior termina de sair antes de o próximo entrar.
     <AnimatePresence mode="wait" initial={false}>
       {status && (
         <motion.div

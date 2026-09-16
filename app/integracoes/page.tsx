@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     "Integrações da World System com SEF/MG, PedidoOk, Mercado Livre, Shopee e equipamentos de operação como balanças, leitores e impressoras de etiquetas.",
 };
 
-/** Página Integrações: todas as integrações disponíveis (content/integrations.ts). */
 export default function IntegracoesPage() {
   return (
     <>

@@ -11,13 +11,6 @@ import {
   type FormState,
 } from "@/components/ui/Form";
 
-/**
- * Formulário da página de Contato.
- *
- * Envia os dados em JSON para /api/contato. Se o servidor apontar erros de
- * validação, cada mensagem aparece embaixo do campo correspondente.
- */
-
 type FieldName = "name" | "email" | "phone" | "subject" | "message";
 type Values = Record<FieldName, string>;
 
@@ -28,8 +21,6 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Partial<Values>>({});
   const [state, setState] = useState<FormState>("idle");
 
-  // Propriedades repetidas em todo campo: id, nome, valor, estado de erro e a
-  // atualização do valor enquanto a pessoa digita.
   function fieldProps(field: FieldName) {
     return {
       id: `contact-${field}`,
@@ -47,7 +38,6 @@ export function ContactForm() {
     setErrors({});
     setState("loading");
 
-    // O honeypot não fica no state: o valor é lido direto do formulário.
     const website = String(new FormData(event.currentTarget).get("website") ?? "");
 
     try {
@@ -58,7 +48,6 @@ export function ContactForm() {
       });
 
       if (!response.ok) {
-        // O servidor devolve uma lista de erros por campo; mostramos o primeiro de cada.
         const data = await response.json();
         const fieldErrors: Partial<Values> = {};
         for (const [field, messages] of Object.entries(data?.errors ?? {})) {

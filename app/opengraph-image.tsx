@@ -1,13 +1,5 @@
 import { ImageResponse } from "next/og";
 
-/**
- * Imagem de prévia (1200x630) que aparece quando um link do site é
- * compartilhado no WhatsApp, LinkedIn, Facebook etc. O Next gera o PNG a
- * partir deste JSX.
- *
- * Os estilos são inline porque o gerador de imagem não lê o CSS do site.
- */
-
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,7 +17,6 @@ export default function OpengraphImage() {
           background: "linear-gradient(135deg, #0d1c34 0%, #162f54 55%, #21529f 100%)",
         }}
       >
-        {/* Marca: ícone e nome */}
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <div
             style={{
@@ -58,7 +49,6 @@ export default function OpengraphImage() {
           </div>
         </div>
 
-        {/* Título */}
         <div
           style={{
             display: "flex",
@@ -73,7 +63,6 @@ export default function OpengraphImage() {
           Soluções em TI para gestão e automação empresarial
         </div>
 
-        {/* Subtítulo */}
         <div
           style={{
             display: "flex",

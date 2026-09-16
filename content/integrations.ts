@@ -1,10 +1,5 @@
 import type { Integration } from "@/content/types";
 
-/**
- * Integrações com órgãos fiscais, canais de venda e equipamentos.
- *
- * A página inicial mostra as 6 primeiras; a página /integracoes mostra todas.
- */
 export const integrations: Integration[] = [
   {
     name: "SEF/MG",

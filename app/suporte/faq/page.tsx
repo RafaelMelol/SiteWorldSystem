@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     "Perguntas frequentes sobre EFD-Contribuições, NF-e, NFC-e, SINTEGRA e procedimentos operacionais dos sistemas World System.",
 };
 
-/** Página FAQ: perguntas frequentes agrupadas por categoria (content/faq.ts). */
 export default function FaqPage() {
   return (
     <>

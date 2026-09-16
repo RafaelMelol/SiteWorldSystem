@@ -1,11 +1,3 @@
-/**
- * Textos institucionais da World System.
- *
- * Usado na página Empresa, na seção "Sobre" da página inicial e nos dados
- * estruturados lidos pelos buscadores.
- */
-
-/** Visão geral: fundação, sede, apresentação, missão e reconhecimentos. */
 export const companyOverview = {
   foundingYear: 1993,
   headquarters: "Lagoa da Prata-MG",
@@ -20,7 +12,6 @@ export const companyOverview = {
     "Empresa destaque no segmento de Sistemas para Automação Comercial em premiações da CHG Representações, no Prêmio Destak Empresarial, Melhores Empresas e Prata da Casa.",
 } as const;
 
-/** Diferenciais da empresa, exibidos em cartões. */
 export const companyPillars = [
   {
     title: "Experiência desde 1993",
@@ -44,5 +35,4 @@ export const companyPillars = [
   },
 ] as const;
 
-/** Segmentos de mercado atendidos. */
 export const segmentsServed = ["Indústria", "Atacado", "Varejo"] as const;

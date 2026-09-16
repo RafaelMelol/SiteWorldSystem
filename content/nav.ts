@@ -1,10 +1,5 @@
 import type { NavLink, NavSection } from "@/content/types";
 
-/**
- * Links de navegação do site.
- */
-
-/** Menu do topo. Itens com `children` abrem um submenu. */
 export const mainNav: NavSection[] = [
   { label: "Empresa", href: "/empresa" },
   {
@@ -30,7 +25,6 @@ export const mainNav: NavSection[] = [
   { label: "Oportunidades", href: "/oportunidades" },
 ];
 
-/** Colunas de links do rodapé. */
 export const footerNav: Record<"institucional" | "solucoes", NavLink[]> = {
   institucional: [
     { label: "Home", href: "/" },

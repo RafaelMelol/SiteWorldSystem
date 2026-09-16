@@ -11,12 +11,6 @@ import {
 import { useSafeReducedMotion } from "@/components/ui/Animations";
 import { cn } from "@/lib/utils";
 
-/**
- * Ilustração decorativa de um painel de gestão, exibida no hero.
- * É desenhada com HTML e CSS — não é uma captura de tela do sistema real.
- */
-
-// Alturas das barras do gráfico de faturamento, em %.
 const chartBars = [40, 65, 45, 80, 60, 95];
 
 export function DashboardMockup() {
@@ -24,11 +18,9 @@ export function DashboardMockup() {
 
   return (
     <div aria-hidden className="relative mx-auto w-full max-w-md select-none">
-      {/* Brilho colorido atrás do painel */}
       <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-100 via-transparent to-accent-100 blur-2xl" />
 
       <div className="rounded-2xl border border-border-subtle bg-surface p-5 shadow-elevated">
-        {/* Barra de título, imitando uma janela */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="size-2.5 rounded-full bg-red-400" />
@@ -39,7 +31,6 @@ export function DashboardMockup() {
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-3">
-          {/* Gráfico de faturamento */}
           <div className="rounded-xl bg-surface-muted p-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium text-foreground/50">Faturamento</span>
@@ -56,7 +47,6 @@ export function DashboardMockup() {
             </div>
           </div>
 
-          {/* Indicadores de status */}
           <div className="flex flex-col gap-3">
             <StatusItem
               icon={FileCheck2}
@@ -73,7 +63,6 @@ export function DashboardMockup() {
           </div>
         </div>
 
-        {/* Linha de análise */}
         <div className="mt-3 flex items-center justify-between rounded-xl bg-surface-muted p-3">
           <div className="flex items-center gap-2.5">
             <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
@@ -87,7 +76,6 @@ export function DashboardMockup() {
         </div>
       </div>
 
-      {/* Cartão flutuante que sobe e desce devagar (parado com "reduzir movimento") */}
       <motion.div
         animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -100,7 +88,6 @@ export function DashboardMockup() {
   );
 }
 
-/** Indicador com ícone colorido, rótulo e valor. */
 function StatusItem({
   icon: Icon,
   iconClassName,

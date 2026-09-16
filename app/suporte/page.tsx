@@ -14,7 +14,6 @@ export const metadata: Metadata = {
     "Horário de atendimento e perguntas frequentes sobre os sistemas da World System.",
 };
 
-// Horários de atendimento, exibidos em cartões.
 const schedules = [
   {
     label: supportHours.weekdayLabel,
@@ -28,7 +27,6 @@ const schedules = [
   },
 ];
 
-// Telefones diretos; ao clicar, o celular abre a ligação.
 const phoneChannels = [
   { label: "Telefone / WhatsApp", phone: contactInfo.phone, display: contactInfo.phoneDisplay },
   {
@@ -38,10 +36,6 @@ const phoneChannels = [
   },
 ];
 
-/**
- * Página Suporte: horários de atendimento, telefones diretos e atalho para o
- * FAQ. Dados em content/contact.ts.
- */
 export default function SuportePage() {
   return (
     <>
@@ -51,7 +45,6 @@ export default function SuportePage() {
         description="Atendimento, horário de plantão e respostas para as dúvidas técnicas mais comuns."
       />
 
-      {/* id="horario" é o destino do link "Horário de atendimento" do menu */}
       <section id="horario" className="scroll-mt-24 py-20 lg:py-24">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <Reveal>
@@ -90,7 +83,6 @@ export default function SuportePage() {
         </Container>
       </section>
 
-      {/* Atalho para o FAQ */}
       <section className="border-t border-border-subtle py-20 lg:py-24">
         <Container>
           <Reveal>

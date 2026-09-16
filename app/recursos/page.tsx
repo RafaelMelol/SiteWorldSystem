@@ -11,10 +11,6 @@ export const metadata: Metadata = {
     "Conheça os recursos das soluções World System: plataforma web, relatórios, segurança, emissão fiscal, operação comercial e integrações com equipamentos.",
 };
 
-/**
- * Página Recursos: texto à esquerda e todas as categorias de recursos, em
- * abas, à direita (content/features.ts).
- */
 export default function RecursosPage() {
   return (
     <>
