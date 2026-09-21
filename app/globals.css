@@ -282,31 +282,6 @@ body {
   }
 }
 
-.hero-mouse-glow {
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 9999px;
-  background: radial-gradient(
-    circle,
-    rgba(35, 125, 255, 0.22) 0%,
-    rgba(35, 125, 255, 0.12) 25%,
-    rgba(35, 125, 255, 0.04) 48%,
-    transparent 70%
-  );
-  filter: blur(10px);
-}
-
-@media (max-width: 600px) {
-  .hero-mouse-glow {
-    width: 350px;
-    height: 350px;
-  }
-}
-
 .custom-cursor {
   position: fixed;
   left: 0;

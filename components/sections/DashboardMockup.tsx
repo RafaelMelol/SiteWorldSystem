@@ -18,8 +18,6 @@ export function DashboardMockup() {
 
   return (
     <div aria-hidden className="relative mx-auto w-full max-w-md select-none">
-      <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-100 via-transparent to-accent-100 blur-2xl" />
-
       <div className="rounded-2xl border border-border-subtle bg-surface p-5 shadow-elevated">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

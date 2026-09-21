@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type MouseEvent } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { DashboardMockup } from "@/components/sections/DashboardMockup";
@@ -10,47 +10,11 @@ import { Container } from "@/components/ui/Section";
 import { companyOverview } from "@/content/company";
 
 export function Hero() {
-  const glowRef = useRef<HTMLDivElement>(null);
-  const target = useRef({ x: 50, y: 50 });
-  const current = useRef({ x: 50, y: 50 });
-
-  useEffect(() => {
-    let frameId = 0;
-    function follow() {
-      current.current.x += (target.current.x - current.current.x) * 0.08;
-      current.current.y += (target.current.y - current.current.y) * 0.08;
-      if (glowRef.current) {
-        glowRef.current.style.left = `${current.current.x}%`;
-        glowRef.current.style.top = `${current.current.y}%`;
-      }
-      frameId = requestAnimationFrame(follow);
-    }
-    frameId = requestAnimationFrame(follow);
-    return () => cancelAnimationFrame(frameId);
-  }, []);
-
-  function handleMouseMove(event: MouseEvent<HTMLElement>) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    target.current = {
-      x: ((event.clientX - rect.left) / rect.width) * 100,
-      y: ((event.clientY - rect.top) / rect.height) * 100,
-    };
-  }
-
-  function handleMouseLeave() {
-    target.current = { x: 50, y: 50 };
-  }
-
   return (
-    <section
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative isolate -mt-18 flex min-h-dvh flex-col overflow-hidden border-b border-border-subtle bg-surface"
-    >
+    <section className="relative isolate -mt-18 flex min-h-dvh flex-col overflow-hidden border-b border-border-subtle bg-surface">
       <div aria-hidden className="hero-grid pointer-events-none -z-30" />
       <div aria-hidden className="hero-ambient hero-ambient-blue pointer-events-none -z-20" />
       <div aria-hidden className="hero-ambient hero-ambient-green pointer-events-none -z-20" />
-      <div ref={glowRef} aria-hidden className="hero-mouse-glow pointer-events-none -z-10" />
 
       <ScrollExit className="flex flex-1 flex-col">
         <Container className="grid flex-1 grid-cols-1 content-center items-center gap-12 pt-28 pb-16 lg:grid-cols-2 lg:py-20">
