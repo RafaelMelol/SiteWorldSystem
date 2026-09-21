@@ -23,6 +23,7 @@ export function CompanyTeaser() {
               <CountUp
                 value={yearsInBusiness}
                 suffix="+"
+                duration={3.5}
                 className="text-4xl font-bold tabular-nums text-brand-fg"
               />
               <p className="mt-1 text-xs font-medium uppercase tracking-wide text-foreground/50">

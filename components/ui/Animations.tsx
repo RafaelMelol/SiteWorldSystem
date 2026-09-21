@@ -86,10 +86,12 @@ export function ScrollExit({ children, className }: { children: ReactNode; class
 export function CountUp({
   value,
   suffix = "",
+  duration = 1.4,
   className,
 }: {
   value: number;
   suffix?: string;
+  duration?: number;
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -102,12 +104,12 @@ export function CountUp({
   useEffect(() => {
     if (!inView || prefersReducedMotion) return;
     const controls = animate(0, value, {
-      duration: 1.4,
-      ease: easeOutExpo,
+      duration,
+      ease: [0.33, 1, 0.68, 1],
       onUpdate: (latest) => setDisplay(Math.round(latest)),
     });
     return () => controls.stop();
-  }, [inView, value, prefersReducedMotion]);
+  }, [inView, value, duration, prefersReducedMotion]);
 
   return (
     <span ref={ref} className={className}>
