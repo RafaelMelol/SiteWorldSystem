@@ -6,6 +6,7 @@ import {
   isWithinRateLimit,
   sendNotificationEmail,
 } from "@/lib/forms";
+import { contactInfo } from "@/content/contact";
 
 export async function POST(request: Request) {
   if (!isWithinRateLimit(`contato:${getClientIp(request)}`, 5)) {
@@ -22,11 +23,18 @@ export async function POST(request: Request) {
 
   if (website) return NextResponse.json({ ok: true });
 
-  await sendNotificationEmail({
+  const notification = await sendNotificationEmail({
     subject: `[Contato] ${subject} — ${name}`,
     text: `Nome: ${name}\nE-mail: ${email}\nTelefone: ${phone}\nAssunto: ${subject}\n\nMensagem:\n${message}`,
     replyTo: email,
   });
+
+  if (notification === "failed") {
+    return errorResponse(
+      `Não foi possível enviar sua mensagem agora. Tente novamente em alguns minutos ou fale conosco pelo telefone ${contactInfo.phoneDisplay}.`,
+      502
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }

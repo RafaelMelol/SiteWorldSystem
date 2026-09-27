@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/Form";
 
 const DEFAULT_ERROR = "Não foi possível enviar seu currículo. Tente novamente.";
+const MAX_RESUME_BYTES = 4 * 1024 * 1024;
 
 export function CareerForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -22,13 +23,19 @@ export function CareerForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const resume = formData.get("resume");
+    if (resume instanceof File && resume.size > MAX_RESUME_BYTES) {
+      setErrorMessage("O arquivo deve ter no máximo 4 MB.");
+      setState("error");
+      return;
+    }
+
     setState("loading");
 
     try {
-      const response = await fetch("/api/oportunidades", {
-        method: "POST",
-        body: new FormData(event.currentTarget),
-      });
+      const response = await fetch("/api/oportunidades", { method: "POST", body: formData });
 
       if (!response.ok) {
         const data = await response.json();
@@ -67,7 +74,7 @@ export function CareerForm() {
         label="Currículo (PDF ou DOC)"
         htmlFor="career-resume"
         required
-        hint="Tamanho máximo de 5 MB."
+        hint="Tamanho máximo de 4 MB."
       >
         <label
           htmlFor="career-resume"

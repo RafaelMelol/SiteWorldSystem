@@ -33,14 +33,14 @@ const RESUME_TYPES = [
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 ];
-const RESUME_MAX_BYTES = 5 * 1024 * 1024;
+export const RESUME_MAX_BYTES = 4 * 1024 * 1024;
 
 export function validateResumeFile(file: File | null): string | null {
   if (!file || file.size === 0) return "Anexe seu currículo em PDF ou DOC.";
   if (!RESUME_TYPES.includes(file.type)) {
     return "Formato inválido. Envie um arquivo PDF ou DOC/DOCX.";
   }
-  if (file.size > RESUME_MAX_BYTES) return "O arquivo deve ter no máximo 5 MB.";
+  if (file.size > RESUME_MAX_BYTES) return "O arquivo deve ter no máximo 4 MB.";
   return null;
 }
 
@@ -66,36 +66,58 @@ export function getClientIp(request: Request): string {
   return request.headers.get("x-real-ip") ?? "unknown";
 }
 
+export type EmailResult = "sent" | "skipped" | "failed";
+
 export async function sendNotificationEmail({
   subject,
   text,
   replyTo,
+  to,
+  attachments,
 }: {
   subject: string;
   text: string;
   replyTo?: string;
-}): Promise<void> {
+  to?: string;
+  attachments?: { filename: string; content: string }[];
+}): Promise<EmailResult> {
   const { RESEND_API_KEY, EMAIL_FROM, EMAIL_TO } = process.env;
+  const recipient = to ?? EMAIL_TO;
 
-  if (!RESEND_API_KEY || !EMAIL_FROM || !EMAIL_TO) {
+  if (!RESEND_API_KEY || !EMAIL_FROM || !recipient) {
     console.info("[email] Resend não configurada — envio registrado só no log.", {
       subject,
       text,
     });
-    return;
+    return "skipped";
   }
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ from: EMAIL_FROM, to: EMAIL_TO, subject, text, reply_to: replyTo }),
-  });
+  try {
+    const response = await fetch(process.env.RESEND_API_URL ?? "https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: EMAIL_FROM,
+        to: recipient,
+        subject,
+        text,
+        reply_to: replyTo,
+        attachments,
+      }),
+    });
 
-  if (!response.ok) {
-    console.error("[email] Falha ao enviar pela Resend:", await response.text());
+    if (!response.ok) {
+      console.error("[email] Falha ao enviar pela Resend:", await response.text());
+      return "failed";
+    }
+
+    return "sent";
+  } catch (error) {
+    console.error("[email] Erro de rede ao falar com a Resend:", error);
+    return "failed";
   }
 }
 
